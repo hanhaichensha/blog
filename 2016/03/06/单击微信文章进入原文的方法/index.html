@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>单击微信文章进入原文的方法 | 翰海尘沙</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="昨天，一朋友因为我去年帮了她一点小忙而请吃了一顿豪华早茶，表示受之有愧，想想还是将这个方法分享一下。
+需求：当公众号向订阅用户推送一篇文章后，用户单击文章直接进入文章的原文，而不是进入微信的一个页面，然后再单击阅读原文才能进入到原文的页面，（这样对于一个有动画效果的H5页面，直接进入原文，可以直接看到动画效果，否则，有些用户点开后进入到微信的一个页面，没有单击阅读原文，从而不会看到动画效果，而且大">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单击微信文章进入原文的方法">
+<meta property="og:url" content="http://hanhaichensha.coding.me/2016/03/06/单击微信文章进入原文的方法/index.html">
+<meta property="og:site_name" content="翰海尘沙">
+<meta property="og:description" content="昨天，一朋友因为我去年帮了她一点小忙而请吃了一顿豪华早茶，表示受之有愧，想想还是将这个方法分享一下。
+需求：当公众号向订阅用户推送一篇文章后，用户单击文章直接进入文章的原文，而不是进入微信的一个页面，然后再单击阅读原文才能进入到原文的页面，（这样对于一个有动画效果的H5页面，直接进入原文，可以直接看到动画效果，否则，有些用户点开后进入到微信的一个页面，没有单击阅读原文，从而不会看到动画效果，而且大">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/06/单击微信文章进入原文的方法/图一.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/06/单击微信文章进入原文的方法/图二.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/06/单击微信文章进入原文的方法/图三.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/06/单击微信文章进入原文的方法/图四.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/06/单击微信文章进入原文的方法/图五.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/06/单击微信文章进入原文的方法/图六.png">
+<meta property="og:updated_time" content="2016-11-04T05:54:16.213Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="单击微信文章进入原文的方法">
+<meta name="twitter:description" content="昨天，一朋友因为我去年帮了她一点小忙而请吃了一顿豪华早茶，表示受之有愧，想想还是将这个方法分享一下。
+需求：当公众号向订阅用户推送一篇文章后，用户单击文章直接进入文章的原文，而不是进入微信的一个页面，然后再单击阅读原文才能进入到原文的页面，（这样对于一个有动画效果的H5页面，直接进入原文，可以直接看到动画效果，否则，有些用户点开后进入到微信的一个页面，没有单击阅读原文，从而不会看到动画效果，而且大">
+  
+    <link rel="alternative" href="/blog/atom.xml" title="翰海尘沙" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/css/images/favicon.jpg">
+  
+  <link href="/blog/css/font.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">翰海尘沙</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">进击的程序员</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">主页</a>
+        
+          <a class="main-nav-link" href="/blog/archives/">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/s" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="wd" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hanhaichensha.coding.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-单击微信文章进入原文的方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2016/03/06/单击微信文章进入原文的方法/" class="article-date">
+  <time datetime="2016-03-06T06:05:55.000Z" itemprop="datePublished">2016-03-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/微信开发/">微信开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      单击微信文章进入原文的方法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>昨天，一朋友因为我去年帮了她一点小忙而请吃了一顿豪华早茶，表示受之有愧，想想还是将这个方法分享一下。</p>
+<p>需求：当公众号向订阅用户推送一篇文章后，用户单击文章直接进入文章的原文，而不是进入微信的一个页面，然后再单击阅读原文才能进入到原文的页面，（这样对于一个有动画效果的H5页面，直接进入原文，可以直接看到动画效果，否则，有些用户点开后进入到微信的一个页面，没有单击阅读原文，从而不会看到动画效果，而且大部分用户都不会点击阅读原文）。如图：</p>
+<hr>
+<h4 id="正常的流程：">正常的流程：</h4><p>第一步：点击阅读原文</p>
+<img src="/blog/2016/03/06/单击微信文章进入原文的方法/图一.png" alt="图一" title="图一"> 
+<a id="more"></a>
+<p>第二步：点击阅读原文</p>
+<img src="/blog/2016/03/06/单击微信文章进入原文的方法/图二.png" alt="图二" title="图二">  
+<p>第三步：到达原网页</p>
+<img src="/blog/2016/03/06/单击微信文章进入原文的方法/图三.png" alt="图三" title="图三">
+<hr>
+<h4 id="期望流程">期望流程</h4><p>第一步：点击阅读原文</p>
+<img src="/blog/2016/03/06/单击微信文章进入原文的方法/图四.png" alt="图四" title="图四">  
+<p>第二步：到达原网页</p>
+<img src="/blog/2016/03/06/单击微信文章进入原文的方法/图五.png" alt="图五" title="图五">  
+<hr>
+<p>期望的流程其实在2014年之前注册的公众号是有这个功能的，不过后来腾讯把公众号的好多功能都给限制了，至于其中缘由，我不清楚，也不想知道。那现在的公众号要怎样实现这个功能呢？通过分析有这种效果的公众号文章，发现这是一种“news”类型的消息，但是在微信开发文档的群发接口中：<a href="http://mp.weixin.qq.com/wiki/15/40b6865b893947b764e2de8e4a1fb55f.html" target="_blank" rel="external">http://mp.weixin.qq.com/wiki/15/40b6865b893947b764e2de8e4a1fb55f.html</a>，并没有真正的这种类型的消息，虽然有一种返回结果叫作“news”的东西，但是它并不是我们所期望的东西，还有一种叫作“mpnews”的消息，也不是我们期望的。后来在客服接口<a href="http://mp.weixin.qq.com/wiki/11/c88c270ae8935291626538f9c64bd123.html" target="_blank" rel="external">http://mp.weixin.qq.com/wiki/11/c88c270ae8935291626538f9c64bd123.html</a>中发现了这种类型的消息，抱着试一试的心态，居然成功了，当然了现在说起来很简单，但是在探索的阶段，它可是一个磨人的小妖精。</p>
+<hr>
+<p>下面是用php实现此功能的代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span>	</span><br><span class="line">	set_time_limit(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">encode2json</span><span class="params">(<span class="variable">$str</span>)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> urldecode(json_encode(url_encode(<span class="variable">$str</span>)));	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">url_encode</span><span class="params">(<span class="variable">$str</span>)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(is_array(<span class="variable">$str</span>)) &#123;</span><br><span class="line">			<span class="keyword">foreach</span>(<span class="variable">$str</span> <span class="keyword">as</span> <span class="variable">$key</span>=&gt;<span class="variable">$value</span>) &#123;</span><br><span class="line">				<span class="variable">$str</span>[urlencode(<span class="variable">$key</span>)] = url_encode(<span class="variable">$value</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="variable">$str</span> = urlencode(<span class="variable">$str</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> <span class="variable">$str</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">get_curl</span><span class="params">(<span class="variable">$url</span>)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!extension_loaded(<span class="string">'curl'</span>)) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="string">'cURL library is not loaded'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="variable">$curl</span> = curl_init();       </span><br><span class="line">		curl_setopt(<span class="variable">$curl</span>, CURLOPT_URL, <span class="variable">$url</span>);       </span><br><span class="line">		curl_setopt(<span class="variable">$curl</span>, CURLOPT_SSL_VERIFYPEER, <span class="keyword">false</span>);</span><br><span class="line">		curl_setopt(<span class="variable">$curl</span>, CURLOPT_SSL_VERIFYHOST, <span class="number">2</span>);</span><br><span class="line">		curl_setopt(<span class="variable">$curl</span>, CURLOPT_TIMEOUT, <span class="number">30</span>); </span><br><span class="line">		curl_setopt(<span class="variable">$curl</span>, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>); </span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> <span class="variable">$curl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">https_get</span><span class="params">(<span class="variable">$url</span>)</span></span><br><span class="line">	</span>&#123;       </span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			<span class="variable">$curl</span> = get_curl(<span class="variable">$url</span>);</span><br><span class="line">		&#125;<span class="keyword">catch</span>(<span class="keyword">Exception</span> <span class="variable">$e</span>)&#123;</span><br><span class="line">			<span class="keyword">die</span>(<span class="variable">$e</span>-&gt;getMessage());</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="variable">$data</span> = curl_exec(<span class="variable">$curl</span>);       </span><br><span class="line">		<span class="keyword">if</span> (curl_errno(<span class="variable">$curl</span>)) &#123;</span><br><span class="line">			<span class="variable">$data</span> = encode2json(<span class="keyword">array</span>(<span class="string">'error'</span> =&gt; curl_error(<span class="variable">$curl</span>)));</span><br><span class="line">		&#125;       </span><br><span class="line">		curl_close(<span class="variable">$curl</span>);       </span><br><span class="line">		<span class="keyword">return</span> <span class="variable">$data</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">https_post</span><span class="params">(<span class="variable">$url</span>, <span class="variable">$data</span>)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			<span class="variable">$curl</span> = get_curl(<span class="variable">$url</span>);</span><br><span class="line">		&#125;<span class="keyword">catch</span>(<span class="keyword">Exception</span> <span class="variable">$e</span>)&#123;</span><br><span class="line">			<span class="keyword">die</span>(<span class="variable">$e</span>-&gt;getMessage());</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="variable">$data_string</span> = encode2json(<span class="variable">$data</span>);</span><br><span class="line">		curl_setopt(<span class="variable">$curl</span>, CURLOPT_POST, <span class="number">1</span>);</span><br><span class="line">		curl_setopt(<span class="variable">$curl</span>, CURLOPT_POSTFIELDS, <span class="variable">$data_string</span>);</span><br><span class="line">		curl_setopt(<span class="variable">$curl</span>, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(</span><br><span class="line">			<span class="string">'Content-Type: application/json; charset=utf-8'</span>,</span><br><span class="line">			<span class="string">'Content-Length: '</span> . strlen(<span class="variable">$data_string</span>))</span><br><span class="line">		);</span><br><span class="line">		<span class="variable">$data</span> = curl_exec(<span class="variable">$curl</span>);       </span><br><span class="line">		<span class="keyword">if</span> (curl_errno(<span class="variable">$curl</span>)) &#123;</span><br><span class="line">			<span class="variable">$data</span> = encode2json(<span class="keyword">array</span>(<span class="string">'error'</span> =&gt; curl_error(<span class="variable">$curl</span>)));</span><br><span class="line">		&#125;       </span><br><span class="line">		curl_close(<span class="variable">$curl</span>);       </span><br><span class="line">		<span class="keyword">return</span> <span class="variable">$data</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//参考文档：http://mp.weixin.qq.com/wiki/14/9f9c82c1af308e3b14ba9b973f99a8ba.html</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">get_wechat_token</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="variable">$appid</span> = <span class="string">"xxxxxxxxxxxxxxxxxx"</span>;</span><br><span class="line">		<span class="variable">$appsecret</span> = <span class="string">"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="variable">$url</span> = <span class="string">"https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=$appid&amp;secret=$appsecret"</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="variable">$result</span> = json_decode(https_get(<span class="variable">$url</span>));</span><br><span class="line">		<span class="keyword">if</span>(property_exists(<span class="variable">$result</span>,<span class="string">'error'</span>))&#123;</span><br><span class="line">			<span class="keyword">die</span>(<span class="variable">$result</span>-&gt;error);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(!property_exists(<span class="variable">$result</span>,<span class="string">'access_token'</span>))&#123;</span><br><span class="line">			<span class="keyword">die</span>(<span class="string">'Get wechat token failed!'</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		print_r(<span class="variable">$result</span>);</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;br /&gt;"</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="variable">$result</span>-&gt;access_token;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//参考文档：http://mp.weixin.qq.com/wiki/12/54773ff6da7b8bdc95b7d2667d84b1d4.html</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">get_brocast_user</span><span class="params">(<span class="variable">$token</span>)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="variable">$url</span> = <span class="string">"https://api.weixin.qq.com/cgi-bin/user/get?access_token=$token&amp;next_openid="</span>;</span><br><span class="line">		<span class="variable">$result</span> = json_decode(https_get(<span class="variable">$url</span>));</span><br><span class="line">		<span class="keyword">if</span>(property_exists(<span class="variable">$result</span>,<span class="string">'error'</span>))&#123;</span><br><span class="line">			<span class="keyword">die</span>(<span class="variable">$result</span>-&gt;error);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(!property_exists(<span class="variable">$result</span>,<span class="string">'data'</span>))&#123;</span><br><span class="line">			<span class="keyword">die</span>(<span class="string">'Get wechat user failed!'</span>);</span><br><span class="line">		&#125;</span><br><span class="line">			 </span><br><span class="line">		<span class="keyword">return</span> <span class="variable">$result</span>-&gt;data-&gt;openid;		<span class="comment">// 获得所有用户的Openid</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//参考文档：</span></span><br><span class="line">	<span class="comment">//		1、接口文档：http://mp.weixin.qq.com/wiki/15/40b6865b893947b764e2de8e4a1fb55f.html</span></span><br><span class="line">	<span class="comment">//		2、news类型的消息（即：'msgtype'=&gt;'news'）参考文档：	</span></span><br><span class="line">	<span class="comment">//				http://mp.weixin.qq.com/wiki/11/c88c270ae8935291626538f9c64bd123.html</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">send_news</span><span class="params">(<span class="variable">$access_token</span>,<span class="variable">$arr</span>)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="variable">$url</span>  = <span class="string">"https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=$access_token"</span>;</span><br><span class="line">		<span class="variable">$data</span> = <span class="keyword">array</span>(</span><br><span class="line">					<span class="string">'touser'</span>=&gt;<span class="variable">$arr</span>,</span><br><span class="line">					<span class="string">'msgtype'</span>=&gt;<span class="string">'news'</span>,</span><br><span class="line">					<span class="string">'news'</span>=&gt;<span class="keyword">array</span>(</span><br><span class="line">						<span class="string">'articles'</span>=&gt;<span class="keyword">array</span>(</span><br><span class="line">							<span class="keyword">array</span>(</span><br><span class="line">								<span class="string">'title'</span>=&gt;<span class="string">'单击微信文章进入原文的方法'</span>,</span><br><span class="line">								<span class="string">'description'</span>=&gt;<span class="string">'微信公众号文章无需单击阅读原文直接进入到原文的方法'</span>,</span><br><span class="line">								<span class="string">'url'</span>=&gt;<span class="string">'http://t.cn/RGQwXwp'</span>,</span><br><span class="line">								<span class="string">'picurl'</span>=&gt;<span class="string">'http://t.cn/RGQwaVW'</span></span><br><span class="line">							)</span><br><span class="line">						)</span><br><span class="line">					)</span><br><span class="line">				); </span><br><span class="line"></span><br><span class="line">		<span class="variable">$return_content</span> = https_post(<span class="variable">$url</span>, <span class="variable">$data</span>);</span><br><span class="line">		print_r(<span class="variable">$return_content</span>);</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;br /&gt;"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="variable">$access_token</span> = get_wechat_token();</span><br><span class="line">	<span class="variable">$users</span> = get_brocast_user(<span class="variable">$access_token</span>);</span><br><span class="line">	send_news(<span class="variable">$access_token</span>,<span class="variable">$users</span>);</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>代码中的$appid = “xxxxxxxxxxxxxxxxxx”;$appsecret = “xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx”;可以从微信公众平台的后台的“开发”菜单下的“基本配置”中得到，如图：</p>
+<img src="/blog/2016/03/06/单击微信文章进入原文的方法/图六.png" alt="图六" title="图六">  
+
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2016/03/06/单击微信文章进入原文的方法/" data-id="ciy8iux530013nkvu42mg3jlk" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/微信开发/">微信开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2016/03/25/初识Netfilter-iptables/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          初识Netfilter/iptables
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2015/11/26/计算机网络概述/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">计算机网络概述</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<section id="comment">
+  <h1 class="title">comment</h1>
+  <div id="disqus_thread">
+  <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2071579"></script>
+  <!-- UY END -->
+  </div>
+</section>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Linux防火墙/">Linux防火墙</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Ruby/">Ruby</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/信息编码/">信息编码</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/微信开发/">微信开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/杂谈/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/笔试/">笔试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/算法/">算法</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/计算机基础/">计算机基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/计算机网络/">计算机网络</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/C-11/">C++11</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Netfilter/">Netfilter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RSA算法/">RSA算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Ruby/">Ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/iptables/">iptables</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/中国剩余定理/">中国剩余定理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/信息编码/">信息编码</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/关于博客/">关于博客</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/字符串/">字符串</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/并发编程/">并发编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/微信开发/">微信开发</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/总结/">总结</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/扩展辗转相除法/">扩展辗转相除法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/教程/">教程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/数学/">数学</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/杂谈/">杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/欧拉函数/">欧拉函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔试/">笔试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔试题/">笔试题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/网络/">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/计算机基础/">计算机基础</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/计算机网络/">计算机网络</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/费马小定理/">费马小定理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/辗转相除法/">辗转相除法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/防火墙/">防火墙</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/C-11/" style="font-size: 17.5px;">C++11</a> <a href="/blog/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/blog/tags/Netfilter/" style="font-size: 10px;">Netfilter</a> <a href="/blog/tags/RSA算法/" style="font-size: 17.5px;">RSA算法</a> <a href="/blog/tags/Ruby/" style="font-size: 15px;">Ruby</a> <a href="/blog/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/blog/tags/中国剩余定理/" style="font-size: 10px;">中国剩余定理</a> <a href="/blog/tags/信息编码/" style="font-size: 12.5px;">信息编码</a> <a href="/blog/tags/关于博客/" style="font-size: 10px;">关于博客</a> <a href="/blog/tags/字符串/" style="font-size: 12.5px;">字符串</a> <a href="/blog/tags/并发编程/" style="font-size: 10px;">并发编程</a> <a href="/blog/tags/微信开发/" style="font-size: 10px;">微信开发</a> <a href="/blog/tags/总结/" style="font-size: 10px;">总结</a> <a href="/blog/tags/扩展辗转相除法/" style="font-size: 10px;">扩展辗转相除法</a> <a href="/blog/tags/教程/" style="font-size: 10px;">教程</a> <a href="/blog/tags/数学/" style="font-size: 20px;">数学</a> <a href="/blog/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/blog/tags/欧拉函数/" style="font-size: 10px;">欧拉函数</a> <a href="/blog/tags/笔试/" style="font-size: 10px;">笔试</a> <a href="/blog/tags/笔试题/" style="font-size: 12.5px;">笔试题</a> <a href="/blog/tags/网络/" style="font-size: 10px;">网络</a> <a href="/blog/tags/计算机基础/" style="font-size: 12.5px;">计算机基础</a> <a href="/blog/tags/计算机网络/" style="font-size: 12.5px;">计算机网络</a> <a href="/blog/tags/费马小定理/" style="font-size: 12.5px;">费马小定理</a> <a href="/blog/tags/辗转相除法/" style="font-size: 10px;">辗转相除法</a> <a href="/blog/tags/防火墙/" style="font-size: 10px;">防火墙</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/08/">八月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/06/">六月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2016/08/09/C-11特性与应用（三）/">C++11特性与应用（三）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/08/04/C-11特性与应用（二）/">C++11特性与应用（二）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/08/01/C-11特性与应用（一）：C-11语言特性/">C++11特性与应用（一）：C++11语言特性</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/07/22/C-11并发编程（一）：你好，并发世界/">C++11并发编程（一）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/06/06/别样的进制/">别样的进制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 翰海尘沙<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">主页</a>
+  
+    <a href="/blog/archives/" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<script src="/blog/js/jquery2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/blog/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

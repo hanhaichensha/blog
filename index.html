@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>翰海尘沙</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="技术分享、阅读笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="翰海尘沙">
+<meta property="og:url" content="http://hanhaichensha.coding.me/index.html">
+<meta property="og:site_name" content="翰海尘沙">
+<meta property="og:description" content="技术分享、阅读笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翰海尘沙">
+<meta name="twitter:description" content="技术分享、阅读笔记">
+  
+    <link rel="alternative" href="/blog/atom.xml" title="翰海尘沙" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/css/images/favicon.jpg">
+  
+  <link href="/blog/css/font.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">翰海尘沙</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">进击的程序员</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">主页</a>
+        
+          <a class="main-nav-link" href="/blog/archives/">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/s" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="wd" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hanhaichensha.coding.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-C-11特性与应用（三）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2016/08/09/C-11特性与应用（三）/" class="article-date">
+  <time datetime="2016-08-09T09:33:54.000Z" itemprop="datePublished">2016-08-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/08/09/C-11特性与应用（三）/">C++11特性与应用（三）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="基于范围的for循环">基于范围的for循环</h3><p>基于范围的for循环非常的简洁，如：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// C++11版本</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; arr = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> n : arr)</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// C++98/03版本</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; arr = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it = arr.begin();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (; it != arr.end(); ++it)</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *it &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>相比之下，C++版本更加简洁。</p>
+<h4 id="基于范围的for循环使用细节">基于范围的for循环使用细节</h4><p>注意到基于范围的for循环中的auto n，推导出来的是int类型，也就是说<strong>auto推导出来的类型是容器的value_type，而不是迭代器</strong>。</p>
+<p>看到for (auto n : arr)这句，有人会怀疑对容器的访问是没取一个值访问一次容器。事实真是这样吗？我们可以用下面的代码验证一下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; arr = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; get_range(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> val : get_range())</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; val &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//////////////////////////////////////</span></span><br><span class="line"><span class="comment">/// output result</span></span><br><span class="line"><span class="comment">//////////////////////////////////////</span></span><br><span class="line">get_range</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/blog/2016/08/09/C-11特性与应用（三）/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2016/08/09/C-11特性与应用（三）/" data-id="ciy8iuxa0003cnkvu6naxbweq" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/C-11/">C++11</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C-11特性与应用（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2016/08/04/C-11特性与应用（二）/" class="article-date">
+  <time datetime="2016-08-04T07:38:22.000Z" itemprop="datePublished">2016-08-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/08/04/C-11特性与应用（二）/">C++11特性与应用（二）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="模板细节">模板细节</h3><h4 id="模板右尖括号">模板右尖括号</h4><p>在C++98/03范型编程中，模板实例的两个连续右尖括号之间必须加一空格，以免和右移操作符混淆。在C++11中这种限制取消了，不过，要注意的一点是：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">int</span> N&gt;</span><br><span class="line"><span class="keyword">struct</span> Foo</span><br><span class="line">&#123;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	Foo&lt;<span class="number">100</span> &gt;&gt; <span class="number">2</span>&gt; x;</span><br><span class="line">	<span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在c++98/03中编译是么有问题的，它将Foo<100 >&gt; 2&gt; x理解为Foo&lt;(100 &gt;&gt; 2)&gt; x。但是在C++中编译器会提示错误，因为100 &gt;&gt; 2会先解释为模板的定界符，所以要手动写上括号Foo&lt;(100 &gt;&gt; 2)&gt; x。</p>
+<h4 id="模板的别名">模板的别名</h4><p><strong>类型别名</strong>是一个名字，它是某种类型的同义词。有两种方法可以定义类型别名，一是传统方法使用关键字<strong>typedef</strong>：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> wages;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="keyword">uint_t</span>;</span><br></pre></td></tr></table></figure></p>
+<p>typedef只是为某种类型取别名，并没有真的定义一种新的类型，因此，下面这样将不是合法的函数重载：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="keyword">uint_t</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(uint_t)</span></span>;			<span class="comment">//error:重定义</span></span><br></pre></td></tr></table></figure></p>
+<p>假如我们要定义一个map类型，它的key是固定类型std::string，值可以是int也可以是std::string等类型，该如何定义这么一种类型的map呢？在C++98/03中，可以如下实现：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Val&gt;</span><br><span class="line"><span class="keyword">struct</span> str_map</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">typedef</span> <span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>,Val&gt; type;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">str_map&lt;<span class="keyword">int</span>&gt;::type map1;		<span class="comment">//key是std::string，值是int</span></span><br><span class="line">str_map&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;::type map2	<span class="comment">//key是std::string，只是std::string</span></span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/blog/2016/08/04/C-11特性与应用（二）/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2016/08/04/C-11特性与应用（二）/" data-id="ciy8iux9x0037nkvua8oiwom9" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/C-11/">C++11</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C-11特性与应用（一）：C-11语言特性" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2016/08/01/C-11特性与应用（一）：C-11语言特性/" class="article-date">
+  <time datetime="2016-08-01T10:21:27.000Z" itemprop="datePublished">2016-08-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/08/01/C-11特性与应用（一）：C-11语言特性/">C++11特性与应用（一）：C++11语言特性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>C++11相对于C++98/03有一下几点显著增强：</p>
+<ol>
+<li>通过内存模型、线程、原子操作等来支持本地并行编程；</li>
+<li>通过统一初始化表达式、auto、decltype、移动语义等来统一对泛型编程的支持；</li>
+<li>通过constexpr、POD（概念）等更好地支持系统编程；</li>
+<li>通过内联命名空间、继承构造函数和右值引用等，以更好地支持库的构建。</li>
+</ol>
+<h2 id="1、C++11改进我们的程序">1、C++11改进我们的程序</h2><h3 id="1-1_类型推导">1.1 类型推导</h3><h3 id="1、auto类型推导">1、auto类型推导</h3><p>编程时常常需要把表达式赋值给变量，这就要求在声明变量的时候清楚地知道表达式的类型。然而要做到这一点并非那么容易，有时甚至根本做不到。为了解决这个问题，C++11引入了<strong>auto</strong>类型说明符，用它就能让编译器（说明这个过程是编译阶段完成）替我们去分析表达式所属的类型。和原来那些只对应一种特定类型的说明符不同，auto让编译器通过初始值来推算变量的类型。显然，<strong>auto定义的变量必须有初始值</strong>。</p>
+<h4 id="顶层const和底层const">顶层const和底层const</h4><p>我们都知道指针本身是一个对象，它又可以指向另一个对象。因此，指针本身是不是常量和指针所指向的对象是不是常量就是两个相互独立的问题。用名词<strong>顶层const（top-level const）</strong>表示指针本身是一个常量，而<strong>底层const（low-level const）</strong>表示指针所指向的对象是一个常量。</p>
+<p>更一般的，<strong>顶层const</strong>可以表示任意的对象本身是常量，这一点对任何数据类型都适用，如算术类型、类、指针等。<strong>底层const</strong>则与指针和引用等复合类型的基本类型部分有关。比较特殊的是，指针类型既可以是顶层const也可以是底层const，这一点与其他类型相比区别明显：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> *<span class="keyword">const</span> p1 = &amp;i;		<span class="comment">//不能改变p1的值，这是一个顶层const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = <span class="number">42</span>;		<span class="comment">//不能改变ci的值，这是一个顶层const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p2 = &amp;ci;	<span class="comment">//允许改变p2的值，这是一个底层const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *<span class="keyword">const</span> p3=p2; <span class="comment">//右边的const是顶层const，左边的const是底层const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r = ci;		<span class="comment">//用于声明引用的const都是底层const</span></span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/blog/2016/08/01/C-11特性与应用（一）：C-11语言特性/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2016/08/01/C-11特性与应用（一）：C-11语言特性/" data-id="ciy8iuxa2003fnkvucgu2pl15" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/C-11/">C++11</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C-11并发编程（一）：你好，并发世界" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2016/07/22/C-11并发编程（一）：你好，并发世界/" class="article-date">
+  <time datetime="2016-07-22T06:33:15.000Z" itemprop="datePublished">2016-07-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/07/22/C-11并发编程（一）：你好，并发世界/">C++11并发编程（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-1_何谓并发">1.1 何谓并发</h2><p>最简单和最基本的并发是指两个或更多独立的活动同时发生，在计算机领域，并发指的是在单个系统里同时执行多个独立任务。</p>
+<p>计算机并发物理方式：多核并行、单核任务切换以及多核任务切换。</p>
+<h3 id="1-1-2_并发的途径">1.1.2 并发的途径</h3><p>并发的两种基本途径：多进程并发和多线程并发。</p>
+<h4 id="多进程并发">多进程并发</h4><p>将应用程序分为多个独立的进程，使其同时运行，进程间通过常规的通信渠道传递消息（包括信号、套接字、文件、管道等等）。</p>
+<p>缺点：</p>
+<ol>
+<li>通信设置复杂或者通信速度慢（慢的原因是操作系统的进程安全保护措施，避免一个进程去修改另一个进程的数据）；</li>
+<li>进程消耗的资源大，主要表现为启动时间长，操作系统需要消耗资源来管理进程。</li>
+</ol>
+<p>优点：</p>
+<ol>
+<li>由于操作系统为进程间提供了附加保护操作和更高级别的通信机制，从而能够更容易的编写出安全的并发代码；</li>
+<li>通过网络，使用远程连接方式，在不同机器上运行独立的进程，虽然增加了通信成本，但在设计精良的系统上，这是一个提高并行可用性和性能的低成本方式。
+        
+          <p class="article-more-link">
+            <a href="/blog/2016/07/22/C-11并发编程（一）：你好，并发世界/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2016/07/22/C-11并发编程（一）：你好，并发世界/" data-id="ciy8iuxa4003inkvu5vx3tmqk" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/C-11/">C++11</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/并发编程/">并发编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-别样的进制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2016/06/06/别样的进制/" class="article-date">
+  <time datetime="2016-06-05T16:09:05.000Z" itemprop="datePublished">2016-06-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/计算机基础/">计算机基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/06/06/别样的进制/">别样的进制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在<a href="http://t.cn/R5qdeVp">《别样的整数表示和运算》</a>中遗留了一个问题——进制转换问题。在进入今天的主题前，先给一个趣题让大家思考一下：</p>
+<blockquote><p>老鼠与毒药升级版：有 1000 个一模一样的瓶子，其中有 999 瓶是普通的水，有一瓶是毒药。任何喝下毒药的生物都会在一星期之后死亡。现在，你只有三星期的时间进行实验，在某轮实验中死掉的老鼠，无法继续参与之后的实验。为了从 1000 个瓶子中找出毒药，你最少需要几只老鼠？</p>
+<footer><strong>知乎老鼠与毒药问题</strong><cite><a href="https://www.zhihu.com/question/19676641">www.zhihu.com/question/19676641</a></cite></footer></blockquote>
+        
+          <p class="article-more-link">
+            <a href="/blog/2016/06/06/别样的进制/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2016/06/06/别样的进制/" data-id="ciy8iux5o0018nkvu7t47mn1n" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/数学/">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/计算机基础/">计算机基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-别样的整数表示和运算" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2016/06/04/别样的整数表示和运算/" class="article-date">
+  <time datetime="2016-06-04T15:47:02.000Z" itemprop="datePublished">2016-06-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/计算机基础/">计算机基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/06/04/别样的整数表示和运算/">别样的整数表示和运算</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近进入懒癌晚期，拖延症重症期，总惦记着让自己写点东西，然而回头一看，已经将近两个月没写东西，看书也开始打瞌睡，彻底进入老年人模式。细思极恐，鼓起勇气，把最近吹着电扇，抠着脚丫看的些东西记录一下。此文涉及的知识非常简单，主要是涉及小学整数加减运算。</p>
+<p>主要是温习一下计算机基础知识，计算机的信息表示和处理基础二进制整数的表示和运算。不过，我不打算照着书本介绍一下二进制，今天我们使用我们熟知的十进制（也就是我们平时使用的数）来介绍其中的原理。这样做的好处有很多：1、对于不熟悉二进制的或者说不熟悉进制的读者也可以理解一二，而不用多费口舌去介绍进制的概念；2、使用十进制，可以让自己对书本上的原理有更好的理解；3、使用十进制，可以让自己增进对知识的迁移能力，已达到触类旁通等等。</p>
+<h3 id="1、小学一年级加法（十以内加法）">1、小学一年级加法（十以内加法）</h3><p>请注意了，各位童鞋，请用掰手指的方法告诉下面这道题加法题的答案</p>
+<p><strong>题目1：3+5=？</strong></p>
+<p>有八根手指对吧。再来</p>
+<p><strong>题目2：6+7=？</strong></p>
+<p>多少？13？你确定你是13吗？请问你真的有13根手指吗？反正我是只看到了3根手指，我的答案是3。这不禁让人感叹人生苦短，在有限的时间范围之内，你想得到的越多，反而拥有的会越少。一不小心又变成了鸡汤小短文，寓言小故事。<br>
+        
+          <p class="article-more-link">
+            <a href="/blog/2016/06/04/别样的整数表示和运算/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2016/06/04/别样的整数表示和运算/" data-id="ciy8iux5z001fnkvud335s3kv" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/数学/">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/计算机基础/">计算机基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-初识Netfilter-iptables" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2016/03/25/初识Netfilter-iptables/" class="article-date">
+  <time datetime="2016-03-25T12:49:54.000Z" itemprop="datePublished">2016-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Linux防火墙/">Linux防火墙</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/03/25/初识Netfilter-iptables/">初识Netfilter/iptables</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、什么是Netfilter/iptables？">一、什么是Netfilter/iptables？</h3><blockquote><p>iptables是一个运行在用户空间的应用软件，通过控制Linux内核netfilter模块，来管理网络数据包的流动与转送。在大部分的Linux系统上面，iptables是使用/usr/sbin/iptables来操作，文件则放置在手册页底下，可以通过 man iptables 指令获取。通常iptables都需要内核层级的模块来配合运作，Xtables是主要在内核层级里面iptables API运作功能的模块。因相关动作上的需要，iptables的操作需要用到超级用户的权限。</p>
+<p>目前iptables系在2.4、2.6及3.0的内核底下运作，旧版的Linux内核（2.2）使用ipchains及ipwadm（Linux 2.0）来达成类似的功能，2014年1月19日起发行的新版Linux内核（3.13后）则使用nftables取而代之。</p>
+<footer><strong>维基百科</strong><cite><a href="https://zh.wikipedia.org/wiki/Iptables">zh.wikipedia.org/wiki/Iptables</a></cite></footer></blockquote>
+        
+          <p class="article-more-link">
+            <a href="/blog/2016/03/25/初识Netfilter-iptables/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2016/03/25/初识Netfilter-iptables/" data-id="ciy8iux63001jnkvuz5j2lf7m" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Netfilter/">Netfilter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/iptables/">iptables</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/网络/">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/防火墙/">防火墙</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-单击微信文章进入原文的方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2016/03/06/单击微信文章进入原文的方法/" class="article-date">
+  <time datetime="2016-03-06T06:05:55.000Z" itemprop="datePublished">2016-03-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/微信开发/">微信开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/03/06/单击微信文章进入原文的方法/">单击微信文章进入原文的方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>昨天，一朋友因为我去年帮了她一点小忙而请吃了一顿豪华早茶，表示受之有愧，想想还是将这个方法分享一下。</p>
+<p>需求：当公众号向订阅用户推送一篇文章后，用户单击文章直接进入文章的原文，而不是进入微信的一个页面，然后再单击阅读原文才能进入到原文的页面，（这样对于一个有动画效果的H5页面，直接进入原文，可以直接看到动画效果，否则，有些用户点开后进入到微信的一个页面，没有单击阅读原文，从而不会看到动画效果，而且大部分用户都不会点击阅读原文）。如图：</p>
+<hr>
+<h4 id="正常的流程：">正常的流程：</h4><p>第一步：点击阅读原文</p>
+<img src="/blog/2016/03/06/单击微信文章进入原文的方法/图一.png" alt="图一" title="图一">
+        
+          <p class="article-more-link">
+            <a href="/blog/2016/03/06/单击微信文章进入原文的方法/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2016/03/06/单击微信文章进入原文的方法/" data-id="ciy8iux530013nkvu42mg3jlk" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/微信开发/">微信开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-计算机网络概述" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/11/26/计算机网络概述/" class="article-date">
+  <time datetime="2015-11-26T12:51:27.000Z" itemprop="datePublished">2015-11-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/计算机网络/">计算机网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2015/11/26/计算机网络概述/">计算机网络概述</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="基本原理">基本原理</h3><p>在《也说“当你输入一个网址，实际会发生什么?”》中介绍到，一台电脑要跟另一台电脑进行通信（所谓通信就是进行数据交换，比如：从其他电脑上下载一个文件到自己电脑等等，如果没有网络，我们一般的做法是使用U盘、光盘等存储设备将文件从某电脑上拷贝到U盘或者刻录到光盘，然后再把U盘或者光盘的文件拷贝到自己电脑上），说道一个重要的步骤就是找到想进行通信的计算机的IP地址（使用DNS协议实现），只是这样就能通信了吗？我只能说小伙子你真是“too young too simple”。这只是万里长征的一小步，为了后面知识点介绍的方便和对网络通信有大局观，现在先简单的概括性的对网络进行介绍。  </p>
+<p>上篇日记中说到，在浏览器地址栏中输入www.baidu.com时，我们的计算机会把这个域名转换成IP地址，这个宏观过程就是之前讲过的DNS协议查询的那样，但是现在的问题是，本机也就是192.168.1.100去询问DNS服务器223.5.5.5 www.baidu.com的IP是多少时，本机和DNS服务器并不是用一根线直接相连的，而是通过网关和路由器间接相连，要把这个询问消息发送个DNS服务器，就必须要这些网关和路由器进行转发，使用ipconfig /all命令可以查看网关，如图：</p>
+        
+          <p class="article-more-link">
+            <a href="/blog/2015/11/26/计算机网络概述/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2015/11/26/计算机网络概述/" data-id="ciy8iux32000bnkvuu6vp3d3r" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/计算机网络/">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-也说“当你输入一个网址，实际会发生什么-”" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/11/01/也说“当你输入一个网址，实际会发生什么-”/" class="article-date">
+  <time datetime="2015-11-01T12:02:55.000Z" itemprop="datePublished">2015-11-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/计算机网络/">计算机网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2015/11/01/也说“当你输入一个网址，实际会发生什么-”/">也说“当你输入一个网址，实际会发生什么?”</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>趁着感冒好了，赶紧写个开篇，激励自己多写些东西。</p>
+<p>问题来源：<a href="http://www.zhihu.com/question/34873227">http://www.zhihu.com/question/34873227</a></p>
+<p>最近也在各家公司面试，其中少不了会问到网络这一块的知识，借此机会整理一下网络知识。</p>
+<p>一、准备工作：</p>
+<p>使用到的工具有：</p>
+<p>Dig for windows: <a href="http://download.csdn.net/download/tuberose1605/5818117">http://download.csdn.net/download/tuberose1605/5818117</a></p>
+<p>Dig程序安装步骤：</p>
+<ol>
+<li><p>将压缩包解压至 C:\dig ，复制 resolv.conf 至 C:\WINDOWS\system32\drivers\etc</p>
+</li>
+<li><p>添加环境变量</p>
+<p>xp系统 我的电脑右键 – 属性 – 高级 – 环境变量 – 用户变量<br>win7系统 计算机右键 – 属性 – 高级系统设置 – 环境变量 – 用户变量<br>如果存在 PATH 变量，双击进入编辑模式，在变量值后面添加 ;c:\dig (;前面没有空格)<br>如果不存在，则新建变量 变量名：PATH 变量值：c:\dig<br>进入命令提示符，输入 dig 看是否安装成功。</p>
+</li>
+</ol>
+<p>Wireshark: <a href="https://www.wireshark.org/#download">https://www.wireshark.org/#download</a><br>Wireshark程序的安装没什么好说的，一般都是一路next就行了。<br>
+        
+          <p class="article-more-link">
+            <a href="/blog/2015/11/01/也说“当你输入一个网址，实际会发生什么-”/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2015/11/01/也说“当你输入一个网址，实际会发生什么-”/" data-id="ciy8iux7n001xnkvu760nroqt" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/计算机网络/">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><a class="extend next" rel="next" href="/blog/page/2/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Linux防火墙/">Linux防火墙</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Ruby/">Ruby</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/信息编码/">信息编码</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/微信开发/">微信开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/杂谈/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/笔试/">笔试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/算法/">算法</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/计算机基础/">计算机基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/计算机网络/">计算机网络</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/C-11/">C++11</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Netfilter/">Netfilter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RSA算法/">RSA算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Ruby/">Ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/iptables/">iptables</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/中国剩余定理/">中国剩余定理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/信息编码/">信息编码</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/关于博客/">关于博客</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/字符串/">字符串</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/并发编程/">并发编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/微信开发/">微信开发</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/总结/">总结</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/扩展辗转相除法/">扩展辗转相除法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/教程/">教程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/数学/">数学</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/杂谈/">杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/欧拉函数/">欧拉函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔试/">笔试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔试题/">笔试题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/网络/">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/计算机基础/">计算机基础</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/计算机网络/">计算机网络</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/费马小定理/">费马小定理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/辗转相除法/">辗转相除法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/防火墙/">防火墙</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/C-11/" style="font-size: 17.5px;">C++11</a> <a href="/blog/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/blog/tags/Netfilter/" style="font-size: 10px;">Netfilter</a> <a href="/blog/tags/RSA算法/" style="font-size: 17.5px;">RSA算法</a> <a href="/blog/tags/Ruby/" style="font-size: 15px;">Ruby</a> <a href="/blog/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/blog/tags/中国剩余定理/" style="font-size: 10px;">中国剩余定理</a> <a href="/blog/tags/信息编码/" style="font-size: 12.5px;">信息编码</a> <a href="/blog/tags/关于博客/" style="font-size: 10px;">关于博客</a> <a href="/blog/tags/字符串/" style="font-size: 12.5px;">字符串</a> <a href="/blog/tags/并发编程/" style="font-size: 10px;">并发编程</a> <a href="/blog/tags/微信开发/" style="font-size: 10px;">微信开发</a> <a href="/blog/tags/总结/" style="font-size: 10px;">总结</a> <a href="/blog/tags/扩展辗转相除法/" style="font-size: 10px;">扩展辗转相除法</a> <a href="/blog/tags/教程/" style="font-size: 10px;">教程</a> <a href="/blog/tags/数学/" style="font-size: 20px;">数学</a> <a href="/blog/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/blog/tags/欧拉函数/" style="font-size: 10px;">欧拉函数</a> <a href="/blog/tags/笔试/" style="font-size: 10px;">笔试</a> <a href="/blog/tags/笔试题/" style="font-size: 12.5px;">笔试题</a> <a href="/blog/tags/网络/" style="font-size: 10px;">网络</a> <a href="/blog/tags/计算机基础/" style="font-size: 12.5px;">计算机基础</a> <a href="/blog/tags/计算机网络/" style="font-size: 12.5px;">计算机网络</a> <a href="/blog/tags/费马小定理/" style="font-size: 12.5px;">费马小定理</a> <a href="/blog/tags/辗转相除法/" style="font-size: 10px;">辗转相除法</a> <a href="/blog/tags/防火墙/" style="font-size: 10px;">防火墙</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/08/">八月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/06/">六月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2016/08/09/C-11特性与应用（三）/">C++11特性与应用（三）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/08/04/C-11特性与应用（二）/">C++11特性与应用（二）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/08/01/C-11特性与应用（一）：C-11语言特性/">C++11特性与应用（一）：C++11语言特性</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/07/22/C-11并发编程（一）：你好，并发世界/">C++11并发编程（一）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/06/06/别样的进制/">别样的进制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 翰海尘沙<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">主页</a>
+  
+    <a href="/blog/archives/" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<script src="/blog/js/jquery2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/blog/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

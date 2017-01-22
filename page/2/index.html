@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>翰海尘沙</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="技术分享、阅读笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="翰海尘沙">
+<meta property="og:url" content="http://hanhaichensha.coding.me/page/2/index.html">
+<meta property="og:site_name" content="翰海尘沙">
+<meta property="og:description" content="技术分享、阅读笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翰海尘沙">
+<meta name="twitter:description" content="技术分享、阅读笔记">
+  
+    <link rel="alternative" href="/blog/atom.xml" title="翰海尘沙" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/css/images/favicon.jpg">
+  
+  <link href="/blog/css/font.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">翰海尘沙</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">进击的程序员</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">主页</a>
+        
+          <a class="main-nav-link" href="/blog/archives/">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/s" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="wd" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hanhaichensha.coding.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-常见面试题复习：字符串-二" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/09/09/常见面试题复习：字符串-二/" class="article-date">
+  <time datetime="2015-09-09T15:19:00.000Z" itemprop="datePublished">2015-09-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/笔试/">笔试</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2015/09/09/常见面试题复习：字符串-二/">常见面试题复习：字符串(二)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>题目一：字符串长度<br>题目描述<br>给定一个由字母组成的字符串求字符串的长度？<br>实现函数size_t strlen(const char *str)</p>
+<p>乍一看，这是一道送分题，4行代码解决问题：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">size_t</span> <span class="built_in">strlen</span>(<span class="keyword">const</span> <span class="keyword">char</span> * str) &#123;</span><br><span class="line">     <span class="keyword">size_t</span> length = <span class="number">0</span> ;</span><br><span class="line">     <span class="keyword">while</span> (*str++ )</span><br><span class="line">         ++ length;</span><br><span class="line">     <span class="keyword">return</span>  length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这是一个普遍的做法，下面看看一个更高效的做法：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">size_t</span> <span class="built_in">strlen</span>(<span class="keyword">const</span> <span class="keyword">char</span> *str)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span> *char_ptr;</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> *longword_ptr;</span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> longword, himagic, lomagic;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Handle the first few characters by reading one character at a time.</span><br><span class="line">     Do this until CHAR_PTR is aligned on a longword boundary.  */</span></span><br><span class="line">  <span class="keyword">for</span> (char_ptr = str; ((<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span>) char_ptr</span><br><span class="line">			&amp; (<span class="keyword">sizeof</span> (longword) - <span class="number">1</span>)) != <span class="number">0</span>;</span><br><span class="line">       ++char_ptr)</span><br><span class="line">    <span class="keyword">if</span> (*char_ptr == <span class="string">'\0'</span>)</span><br><span class="line">      <span class="keyword">return</span> char_ptr - str;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* All these elucidatory comments refer to 4-byte longwords,</span><br><span class="line">     but the theory applies equally well to 8-byte longwords.  */</span></span><br><span class="line"></span><br><span class="line">  longword_ptr = (<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> *) char_ptr;</span><br><span class="line"></span><br><span class="line">  himagic = <span class="number">0x80808080</span>L;</span><br><span class="line">  lomagic = <span class="number">0x01010101</span>L;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">sizeof</span> (longword) &gt; <span class="number">4</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">/* 64-bit version of the magic.  */</span></span><br><span class="line">      <span class="comment">/* Do the shift in two steps to avoid a warning if long has 32 bits.  */</span></span><br><span class="line">      himagic = ((himagic &lt;&lt; <span class="number">16</span>) &lt;&lt; <span class="number">16</span>) | himagic;</span><br><span class="line">      lomagic = ((lomagic &lt;&lt; <span class="number">16</span>) &lt;&lt; <span class="number">16</span>) | lomagic;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">sizeof</span> (longword) &gt; <span class="number">8</span>)</span><br><span class="line">    <span class="built_in">abort</span> ();</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Instead of the traditional loop which tests each character,</span><br><span class="line">     we will test a longword at a time.  The tricky part is testing</span><br><span class="line">     if *any of the four* bytes in the longword in question are zero.  */</span></span><br><span class="line">  <span class="keyword">for</span> (;;)</span><br><span class="line">    &#123;</span><br><span class="line">      longword = *longword_ptr++;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (((longword - lomagic) &amp; ~longword &amp; himagic) != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">	  <span class="comment">/* Which of the bytes was the zero?  If none of them were, it was</span><br><span class="line">	     a misfire; continue the search.  */</span></span><br><span class="line"></span><br><span class="line">	  <span class="keyword">const</span> <span class="keyword">char</span> *cp = (<span class="keyword">const</span> <span class="keyword">char</span> *) (longword_ptr - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	  <span class="keyword">if</span> (cp[<span class="number">0</span>] == <span class="number">0</span>)</span><br><span class="line">	    <span class="keyword">return</span> cp - str;</span><br><span class="line">	  <span class="keyword">if</span> (cp[<span class="number">1</span>] == <span class="number">0</span>)</span><br><span class="line">	    <span class="keyword">return</span> cp - str + <span class="number">1</span>;</span><br><span class="line">	  <span class="keyword">if</span> (cp[<span class="number">2</span>] == <span class="number">0</span>)</span><br><span class="line">	    <span class="keyword">return</span> cp - str + <span class="number">2</span>;</span><br><span class="line">	  <span class="keyword">if</span> (cp[<span class="number">3</span>] == <span class="number">0</span>)</span><br><span class="line">	    <span class="keyword">return</span> cp - str + <span class="number">3</span>;</span><br><span class="line">	  <span class="keyword">if</span> (<span class="keyword">sizeof</span> (longword) &gt; <span class="number">4</span>)</span><br><span class="line">	    &#123;</span><br><span class="line">	      <span class="keyword">if</span> (cp[<span class="number">4</span>] == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> cp - str + <span class="number">4</span>;</span><br><span class="line">	      <span class="keyword">if</span> (cp[<span class="number">5</span>] == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> cp - str + <span class="number">5</span>;</span><br><span class="line">	      <span class="keyword">if</span> (cp[<span class="number">6</span>] == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> cp - str + <span class="number">6</span>;</span><br><span class="line">	      <span class="keyword">if</span> (cp[<span class="number">7</span>] == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> cp - str + <span class="number">7</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/blog/2015/09/09/常见面试题复习：字符串-二/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2015/09/09/常见面试题复习：字符串-二/" data-id="ciy8iux44000lnkvuh09rpprg" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/字符串/">字符串</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/笔试题/">笔试题</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-常见面试题复习：字符串-一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/09/08/常见面试题复习：字符串-一/" class="article-date">
+  <time datetime="2015-09-08T10:25:00.000Z" itemprop="datePublished">2015-09-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/笔试/">笔试</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2015/09/08/常见面试题复习：字符串-一/">常见面试题复习：字符串(一)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>好久没有写代码了，趁现在有时间敲几行代码，培养一下手感。</p>
+<p>题目一：左旋转字符串<br>题目描述：<br>定义字符串的左旋转操作：把字符串前面的若干个字符移动到字符串的尾部，如把字符串abcdef左旋转2位得到字符串cdefab。<br>请实现字符串左旋转的函数，要求对长度为n的字符串操作的时间复杂度为O(n)，空间复杂度为O(1)。</p>
+<p>这个问题最容易想到的是暴力移位或者再用一个数组来存放前面m个元素（此法空间复杂度显然不满足要求），下面看一下暴力移位，代码如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">leftshiftone</span><span class="params">(<span class="keyword">char</span> *s,<span class="keyword">int</span> n)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> temp = *s;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">        s[i-<span class="number">1</span>] = s[i];</span><br><span class="line">    &#125;</span><br><span class="line">    s[n - <span class="number">1</span>] = temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rightshiftone</span><span class="params">(<span class="keyword">char</span> *s,<span class="keyword">int</span> n)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> temp = s[n - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--)&#123;</span><br><span class="line">        s[i] = s[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    s[<span class="number">0</span>] = temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shift</span><span class="params">(<span class="keyword">char</span> *s,<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span> == s || n &lt;=<span class="number">0</span> || m &lt;= <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    m %= n;</span><br><span class="line">    <span class="keyword">if</span> (m &gt; n /<span class="number">2</span>)&#123;</span><br><span class="line">        m = n - m;</span><br><span class="line">        <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">            rightshiftone(s,n);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">            leftshiftone(s,n);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/blog/2015/09/08/常见面试题复习：字符串-一/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2015/09/08/常见面试题复习：字符串-一/" data-id="ciy8iux4c000snkvu0e9z547a" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/字符串/">字符串</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/笔试题/">笔试题</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-一个关于递推关系的思考" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/08/18/一个关于递推关系的思考/" class="article-date">
+  <time datetime="2015-08-18T13:50:00.000Z" itemprop="datePublished">2015-08-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/笔试/">笔试</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2015/08/18/一个关于递推关系的思考/">一个关于递推关系的思考</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>利姐这几天忙着做笔试题，问了我一个问题（传说是阿里的笔试题，在这里先祝愿她能如愿进入阿里），前天只帮她解释了大概的解题思路，剩下的让她自己去思考思考。但是这问题的求解确实比较困难，而且这里面可以引申出很多知识点，如果要详细讲解，估计又可以写一个系列文章。现在先帮利姐解答一下这个问题。</p>
+<p>题目：用2×1（长为2，宽为1）的瓷板砖去铺6×2（长为6，宽为2）的地面，在不允许把瓷板砖分成小块的情况下，一共有多少种铺法？（这是一个选择题，选项不记得了）</p>
+<p>就这个题目而言，求解并没有多大的难处，至少可以使用穷举法，把所有的可能的铺法画出来，虽然这只是下下之策，但也不失为一个办法。这个办法在遇到大小为601×2的地面时，估计你就会傻眼了。长话短说，我们来讨论一个更为一般的情况：<br> 用2×1（长为2，宽为1）的瓷板砖去铺n×2（长为n，宽为2）的地面，在不允许把瓷板砖分成小块的情况下，一共有多少种铺法？<br> 设用2×1的瓷板砖去铺n×2的地面，在不允许把瓷板砖分成小块的情况下，一共有<embed src="http://latex.codecogs.com/svg.latex?{a_n} " type="image/svg+xml" />种铺法。</p>
+<p>第一步：很容易得出，当n=1时，<embed src="http://latex.codecogs.com/svg.latex?{a_1=1} " type="image/svg+xml" />，当n=2时，<embed src="http://latex.codecogs.com/svg.latex?{a_2=2} " type="image/svg+xml" />。</p>
+<p>第二步：当n=k时，要分两种情况：</p>
+<p>情况一：当第一块砖是竖着铺时，如下图：</p>
+<img src="/blog/2015/08/18/一个关于递推关系的思考/图一.jpg" alt="图一" title="图一">
+        
+          <p class="article-more-link">
+            <a href="/blog/2015/08/18/一个关于递推关系的思考/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2015/08/18/一个关于递推关系的思考/" data-id="ciy8iux900020nkvupolfgf8x" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/数学/">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/笔试/">笔试</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-读书笔记：Ruby篇（三）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/07/29/读书笔记：Ruby篇（三）/" class="article-date">
+  <time datetime="2015-07-29T14:35:00.000Z" itemprop="datePublished">2015-07-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Ruby/">Ruby</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2015/07/29/读书笔记：Ruby篇（三）/">读书笔记：Ruby篇（三）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>引用一位“名人”的话：“世界上唯一不变的，就是什麽都在变”作为今天的开始。一切的乐趣就是在这无穷的变化之中。还记得在培训那会儿，迪奥斯·乔说过一句让人深省的话：“不是不能理解，只是不能适应，这种强加而来的编程方式，一切都要按照这个框架来”。当时，乔刚刚熟练C语言，继而进入MFC的世界，这种不适感体现的相当明显。从相当自由，一切都由自己掌控的C，到一切都要按照MFC框架的各种规则行事，这确实让人难以接受。面对这种困境，我们有两种选择，一种是改变自己，让自己适应这种被别人安排好的命运。还有一种就是改变你周遭的事物，让其适应我们的习惯存在着。我相信大部分人会选择后者，因为我们心向自由。今天就让我们来改变一下Ruby，编写一个能写程序的程序——元编程。只有改变一门语言的本来面目和行为方式，你才算真正掌握了赋予编程无穷乐趣的魔法。</p>
+<p>1.对象模型</p>
+<p>什么是对象模型？对象模型是所有语言构件所存在的系统。那什么是语言构件呢？语言构件就是组成语言的各个部件，如：类、模块、对象、方法等等。说白了就是类似于现实世界的一个抽象世界，组成在个抽象世界的不是现实世界中鸡猫狗，而是类、模块、对象等等。讲对象模型，就是搞清楚这些组成部件之间的关系，及它们之间的相互影响，就像要了解真实社会就要了解人际关系一样。现在让我们进入对象模型的世界：<br>
+        
+          <p class="article-more-link">
+            <a href="/blog/2015/07/29/读书笔记：Ruby篇（三）/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2015/07/29/读书笔记：Ruby篇（三）/" data-id="ciy8iux1y0005nkvurpp5yoqz" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Ruby/">Ruby</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-读书笔记：Ruby篇（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/07/26/读书笔记：Ruby篇（二）/" class="article-date">
+  <time datetime="2015-07-26T15:53:00.000Z" itemprop="datePublished">2015-07-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Ruby/">Ruby</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2015/07/26/读书笔记：Ruby篇（二）/">读书笔记：Ruby篇（二）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>第一天对Ruby做了概述，第二天，你会亲身体验令Ruby大受欢迎的小魔法。你将学习对象、集合、类等基本构建单元的用法，还将学到代码块的基本要素。我在这里补充了Ruby中的一些基本知识。</p>
+<p>预备知识：</p>
+<p>Ruby使用一种命名惯例来区分名称的用途：名称的第一个字符显示这个名称如何被使用。局部变量、方法参数和方法名称都必须以小写字母或下划线开始。全局变量以美元符号（$）为前缀，而实例变量以“at”（@）符号开始。类变量以两个“at”（@@）符号开始。最后，类名称、模块名称和常量都必须以一个大写字母开始。之后的字符可以是字母、数字和下划线的任意组合（但跟在@符号候命的符号不能是数字）。但是按照惯例，包含多个单词的实例变量名称在词与词之间使用下划线连接，包含多个单词的类变量名称使用混合大小写（每个单词首字母大写）。方法名称可以以?、!和=字符结束。还有一点：从定义一元运算符有 +（正）、 -（负）、 ~（位反）、 !（非）， 它们分别以 +@、 -@、 ~@、 !@ 为方法名进行方法的定义，调用时直接使用+、-、~、@。</p>
+<h3 id="1．基本数据类型">1．基本数据类型</h3><img src="/blog/2015/07/26/读书笔记：Ruby篇（二）/图一.png" alt="图一" title="图一">
+        
+          <p class="article-more-link">
+            <a href="/blog/2015/07/26/读书笔记：Ruby篇（二）/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2015/07/26/读书笔记：Ruby篇（二）/" data-id="ciy8iux0l0000nkvu1vd292n4" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Ruby/">Ruby</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-读书笔记：Ruby篇（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/07/19/读书笔记：Ruby篇（一）/" class="article-date">
+  <time datetime="2015-07-19T08:05:55.000Z" itemprop="datePublished">2015-07-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Ruby/">Ruby</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2015/07/19/读书笔记：Ruby篇（一）/">读书笔记：Ruby篇（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1．Ruby简史</p>
+<p>Ruby是由日本的松本行弘大约在1993年发明，在2006年前后随着Rails框架崭露头而一鸣惊人。</p>
+<p>Ruby的发明者Matz为让Ruby成为一门充满乐趣的编程语言，为此，他为Ruby加了一勺糖，一勺语法糖，这勺糖打破了一些语言常规，不仅为程序员提供更加好的体验，而且让代码更加容易理解。此外，Ruby并没有过多的担心编程语言的执行效率，而是把精力放在了提高程序员的编程效率上，于是Matz在简单性和安全性之间、编码效率和程序性能之间做了让步和折中。</p>
+<p>松本行弘访谈录</p>
+<p>问题一：你为什么要开发Ruby？<br>总结Matz的回答：始于对编程语言的兴趣，受到Perl这门可以提高苦逼程序员生产力的语言的启发，最后开发出了Ruby，并受到了世界各地程序员的的喜爱。</p>
+<p>问题二：你喜欢它哪一点呢？<br>Matz回答：喜欢它的寓教于乐的方式。在技术上，最喜欢的是“代码块（block）”，它是一种易于控制的高阶函数，也为领域特定语言及其他特性的实现提供了极大的灵活性。</p>
+<p>问题三：如果能让时光倒流，你想改变哪些特性？<br>Matz回答：我想去掉线程，加入actor（参与者）或一些更高级的并发特性。<br>
+        
+          <p class="article-more-link">
+            <a href="/blog/2015/07/19/读书笔记：Ruby篇（一）/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2015/07/19/读书笔记：Ruby篇（一）/" data-id="ciy8iux2x0008nkvuvsxlk4lq" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Ruby/">Ruby</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-手电筒的启示" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/03/12/手电筒的启示/" class="article-date">
+  <time datetime="2015-03-12T13:27:55.000Z" itemprop="datePublished">2015-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/信息编码/">信息编码</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2015/03/12/手电筒的启示/">手电筒的启示</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>昨天我们说到了各种社会活动都是进行信息交流，要交流就必须要对信息进行编码，使其成为一种大家都能理解的形式展现出来。之所以说是大家都能理解的形式，是因为我们说各类载体对信息的表达是等价的，而不是等效的。比如：你对一个农村老太太说网络语，她就完全无法理解你的意思，因为当年的你妹已经不再是你妹，同志也不再是那个同志了。下面就让我们去探寻一下电报机和人都能懂的语言，让我们和电报机能畅通的进行交流。</p>
+<p>昨天，我们探究计算机问题，然后我们只谈信息传递，今天，本来是说电报机的，那咱不说电报机，说手电筒。据说手电筒是为了能让小朋友躲在被窝看小人书的一项伟大发明。不过，像我这种大朋友就没那么幼稚，怎么能这么浪费资源能呢，我要拿它来吹牛，骗妹子，这才是正确的使用方式。回到昨天的情景：“土鳖”成东青与苏梅相恋了，正巧他们住在相邻且相距500米的两栋宿舍楼内，寝室也刚好正对着。长夜漫漫，实难入睡，土鳖想着女神，女神想着土鳖。第二天，两人决定把这段时间好好地利用起来，商量着晚上使用手电筒来进行交流，这样既可以避免喊话而打扰别人休息。晚上，土鳖站在阳台，打开手电筒，一横一竖的比划着要说的话，女神看了半天没明白他在瞎哔哔啥，反而引来了其他寝室的抱怨（光线亮瞎了其他寝室的美眉们）。<br>
+        
+          <p class="article-more-link">
+            <a href="/blog/2015/03/12/手电筒的启示/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2015/03/12/手电筒的启示/" data-id="ciy8iux3i000gnkvuvcvfkvqw" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/信息编码/">信息编码</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-信息编码随想" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/03/12/信息编码随想/" class="article-date">
+  <time datetime="2015-03-11T16:45:55.000Z" itemprop="datePublished">2015-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/信息编码/">信息编码</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2015/03/12/信息编码随想/">信息编码随想</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先聊一聊有趣的网络语。下面内容来自百度百科的词条“流行用语”。<br>支持不叫支持，叫——顶。<br>有钱人不叫有钱人，叫——土豪。<br>东西不叫东西，叫——东东。<br>倒霉不叫倒霉，叫——衰。<br>JJWW：唧唧歪歪，指人说话的样子。<br>SJB：神经病。<br>PMP：拍马屁。<br>MPJ：马屁精。<br>FB：腐败，多戏称聚餐<br>XPP：夏骗骗，指学术造假者。<br>1414：意思意思。<br>3166： 撒由那拉，再见。(日语)<br>555： wuwu,呜呜呜(哭) 。<br>7456： 气死我咯。<br>748： 去死吧。<br>8137： 不要生气。<br>84： 不是。<br>848： 不是吧。<br>886： 拜拜喽！<br>
+        
+          <p class="article-more-link">
+            <a href="/blog/2015/03/12/信息编码随想/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2015/03/12/信息编码随想/" data-id="ciy8iux79001unkvu3yvk9f2o" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/信息编码/">信息编码</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-RSA系类（四）：完結篇" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/02/04/RSA系类（四）：完結篇/" class="article-date">
+  <time datetime="2015-02-04T15:53:00.000Z" itemprop="datePublished">2015-02-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/算法/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2015/02/04/RSA系类（四）：完結篇/">RSA系类（四）：完結篇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>昨天说到费马小定理可以表述成：如果 m 是一个质数的话，那么对于任意一个整数 n ，随着 i（<embed src="http://latex.codecogs.com/svg.latex?{i\in n^{0}} " type="image/svg+xml" />）的增加， n 的 i 次方除以 m 的余数将会呈现出长度为 m–1 的周期性。然后我们还提出了另一个问题，如果m不是质数，那么对于任意一个整数 n ，随着 i 的增加， n 的 i 次方除以 m 的余数将会呈现出多长的周期性呢？</p>
+<p>记<embed src="http://latex.codecogs.com/svg.latex?{\varphi(m)} " type="image/svg+xml" />为对于任意一个整数 n ，随着 i（<embed src="http://latex.codecogs.com/svg.latex?{i\in n^{0}} " type="image/svg+xml" />）的增加，n 的 i 次方除以 m 的余数的周期。</p>
+<p>1.现在我们先来看一下这种情况，如果m=p×q，其中p和q互质，由中国剩余定理可以可知：任意整数对m求余的余数和这个数分别对p、q求余组成的余数数对是一一对应关系。因此，对于任意一个整数 n ，随着 i 的增加， n 的 i 次方除以 m 的余数与n 的 i 次方分别除以p、q而组成的余数数对的周期性是一致的。而n 的 i 次方除以p的周期性可以根据费马小定理得（p-1），同理，可得n 的 i 次方除以q的周期性是（q-1）。那么(p-1)×(q-1)就是n 的 i 次方除以 m 的余数的一个周期，请注意，这里说的是一个周期，并没说是最小正周期，最小正周期一概是（p-1）和（q-1）的最小公倍数才对。为了方便，我只求出周期即可，所以通常只要(p-1)×(q-1)就行了。</p>
+        
+          <p class="article-more-link">
+            <a href="/blog/2015/02/04/RSA系类（四）：完結篇/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2015/02/04/RSA系类（四）：完結篇/" data-id="ciy8iux980025nkvuwwjfewxm" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/RSA算法/">RSA算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/数学/">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/欧拉函数/">欧拉函数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/费马小定理/">费马小定理</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-RSA系类（三）：从物不知数到中国剩余定理和费马小定理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/02/03/RSA系类（三）：从物不知数到中国剩余定理和费马小定理/" class="article-date">
+  <time datetime="2015-02-03T15:51:00.000Z" itemprop="datePublished">2015-02-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/算法/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2015/02/03/RSA系类（三）：从物不知数到中国剩余定理和费马小定理/">RSA系类（三）：从物不知数到中国剩余定理和费马小定理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先对昨天的错误进行修正：“最后，我们求解一下3×n - 5×m=4这个不定方程： 3×2 + 5×(-1)=1两边同时乘以4得：3×8 + 5×(-4)=4，从而得出：n=8，m=-4”，这句话中的m=-4应该改成m=4。</p>
+<p>下面进入今天的主题： </p>
+<h4 id="3、今有物不知其数，三三数之剩二；五五数之剩三；七七数之剩二。问物几何?">3、今有物不知其数，三三数之剩二；五五数之剩三；七七数之剩二。问物几何?</h4><blockquote><p>中国古代著名算题。原载《孙子算经》卷下第二十六题：“今有物不知其数，三三数之剩二；五五数之剩三；七七数之剩二。问物几何?”当时虽已有了答案23，但它的系统解法是秦九韶在《数书九章·大衍求一术》中给出的。大衍求一术（也称作“中国剩余定理”）是中国古算中最有独创性的成就之一，属现代数论中的一次同余式组问题。</p>
+<footer><strong>维基百科</strong><cite><a href="http://baike.baidu.com/link?url=nUHiJ81_AIP_fx3ebRpG4BJBAkPfOdEkaqfT6g3_A12-soPBRF6fzKSQQRZuvNMDEe7lhfworl2v_TBb9g5Kba">物不知数</a></cite></footer></blockquote>
+        
+          <p class="article-more-link">
+            <a href="/blog/2015/02/03/RSA系类（三）：从物不知数到中国剩余定理和费马小定理/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2015/02/03/RSA系类（三）：从物不知数到中国剩余定理和费马小定理/" data-id="ciy8iux9k002lnkvu2tau81r2" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/RSA算法/">RSA算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/中国剩余定理/">中国剩余定理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/数学/">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/费马小定理/">费马小定理</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/blog/">&laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><a class="extend next" rel="next" href="/blog/page/3/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Linux防火墙/">Linux防火墙</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Ruby/">Ruby</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/信息编码/">信息编码</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/微信开发/">微信开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/杂谈/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/笔试/">笔试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/算法/">算法</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/计算机基础/">计算机基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/计算机网络/">计算机网络</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/C-11/">C++11</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Netfilter/">Netfilter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RSA算法/">RSA算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Ruby/">Ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/iptables/">iptables</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/中国剩余定理/">中国剩余定理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/信息编码/">信息编码</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/关于博客/">关于博客</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/字符串/">字符串</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/并发编程/">并发编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/微信开发/">微信开发</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/总结/">总结</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/扩展辗转相除法/">扩展辗转相除法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/教程/">教程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/数学/">数学</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/杂谈/">杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/欧拉函数/">欧拉函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔试/">笔试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔试题/">笔试题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/网络/">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/计算机基础/">计算机基础</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/计算机网络/">计算机网络</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/费马小定理/">费马小定理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/辗转相除法/">辗转相除法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/防火墙/">防火墙</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/C-11/" style="font-size: 17.5px;">C++11</a> <a href="/blog/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/blog/tags/Netfilter/" style="font-size: 10px;">Netfilter</a> <a href="/blog/tags/RSA算法/" style="font-size: 17.5px;">RSA算法</a> <a href="/blog/tags/Ruby/" style="font-size: 15px;">Ruby</a> <a href="/blog/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/blog/tags/中国剩余定理/" style="font-size: 10px;">中国剩余定理</a> <a href="/blog/tags/信息编码/" style="font-size: 12.5px;">信息编码</a> <a href="/blog/tags/关于博客/" style="font-size: 10px;">关于博客</a> <a href="/blog/tags/字符串/" style="font-size: 12.5px;">字符串</a> <a href="/blog/tags/并发编程/" style="font-size: 10px;">并发编程</a> <a href="/blog/tags/微信开发/" style="font-size: 10px;">微信开发</a> <a href="/blog/tags/总结/" style="font-size: 10px;">总结</a> <a href="/blog/tags/扩展辗转相除法/" style="font-size: 10px;">扩展辗转相除法</a> <a href="/blog/tags/教程/" style="font-size: 10px;">教程</a> <a href="/blog/tags/数学/" style="font-size: 20px;">数学</a> <a href="/blog/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/blog/tags/欧拉函数/" style="font-size: 10px;">欧拉函数</a> <a href="/blog/tags/笔试/" style="font-size: 10px;">笔试</a> <a href="/blog/tags/笔试题/" style="font-size: 12.5px;">笔试题</a> <a href="/blog/tags/网络/" style="font-size: 10px;">网络</a> <a href="/blog/tags/计算机基础/" style="font-size: 12.5px;">计算机基础</a> <a href="/blog/tags/计算机网络/" style="font-size: 12.5px;">计算机网络</a> <a href="/blog/tags/费马小定理/" style="font-size: 12.5px;">费马小定理</a> <a href="/blog/tags/辗转相除法/" style="font-size: 10px;">辗转相除法</a> <a href="/blog/tags/防火墙/" style="font-size: 10px;">防火墙</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/08/">八月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/06/">六月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2016/08/09/C-11特性与应用（三）/">C++11特性与应用（三）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/08/04/C-11特性与应用（二）/">C++11特性与应用（二）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/08/01/C-11特性与应用（一）：C-11语言特性/">C++11特性与应用（一）：C++11语言特性</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/07/22/C-11并发编程（一）：你好，并发世界/">C++11并发编程（一）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/06/06/别样的进制/">别样的进制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 翰海尘沙<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">主页</a>
+  
+    <a href="/blog/archives/" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<script src="/blog/js/jquery2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/blog/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>RSA系类（三）：从物不知数到中国剩余定理和费马小定理 | 翰海尘沙</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="先对昨天的错误进行修正：“最后，我们求解一下3×n - 5×m=4这个不定方程： 3×2 + 5×(-1)=1两边同时乘以4得：3×8 + 5×(-4)=4，从而得出：n=8，m=-4”，这句话中的m=-4应该改成m=4。
+下面进入今天的主题： 
+3、今有物不知其数，三三数之剩二；五五数之剩三；七七数之剩二。问物几何?中国古代著名算题。原载《孙子算经》卷下第二十六题：“今有物不知其数，三三数之剩二">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RSA系类（三）：从物不知数到中国剩余定理和费马小定理">
+<meta property="og:url" content="http://hanhaichensha.coding.me/2015/02/03/RSA系类（三）：从物不知数到中国剩余定理和费马小定理/index.html">
+<meta property="og:site_name" content="翰海尘沙">
+<meta property="og:description" content="先对昨天的错误进行修正：“最后，我们求解一下3×n - 5×m=4这个不定方程： 3×2 + 5×(-1)=1两边同时乘以4得：3×8 + 5×(-4)=4，从而得出：n=8，m=-4”，这句话中的m=-4应该改成m=4。
+下面进入今天的主题： 
+3、今有物不知其数，三三数之剩二；五五数之剩三；七七数之剩二。问物几何?中国古代著名算题。原载《孙子算经》卷下第二十六题：“今有物不知其数，三三数之剩二">
+<meta property="og:updated_time" content="2016-11-04T05:54:16.106Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RSA系类（三）：从物不知数到中国剩余定理和费马小定理">
+<meta name="twitter:description" content="先对昨天的错误进行修正：“最后，我们求解一下3×n - 5×m=4这个不定方程： 3×2 + 5×(-1)=1两边同时乘以4得：3×8 + 5×(-4)=4，从而得出：n=8，m=-4”，这句话中的m=-4应该改成m=4。
+下面进入今天的主题： 
+3、今有物不知其数，三三数之剩二；五五数之剩三；七七数之剩二。问物几何?中国古代著名算题。原载《孙子算经》卷下第二十六题：“今有物不知其数，三三数之剩二">
+  
+    <link rel="alternative" href="/blog/atom.xml" title="翰海尘沙" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/css/images/favicon.jpg">
+  
+  <link href="/blog/css/font.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">翰海尘沙</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">进击的程序员</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">主页</a>
+        
+          <a class="main-nav-link" href="/blog/archives/">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/s" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="wd" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hanhaichensha.coding.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-RSA系类（三）：从物不知数到中国剩余定理和费马小定理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/02/03/RSA系类（三）：从物不知数到中国剩余定理和费马小定理/" class="article-date">
+  <time datetime="2015-02-03T15:51:00.000Z" itemprop="datePublished">2015-02-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/算法/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RSA系类（三）：从物不知数到中国剩余定理和费马小定理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先对昨天的错误进行修正：“最后，我们求解一下3×n - 5×m=4这个不定方程： 3×2 + 5×(-1)=1两边同时乘以4得：3×8 + 5×(-4)=4，从而得出：n=8，m=-4”，这句话中的m=-4应该改成m=4。</p>
+<p>下面进入今天的主题： </p>
+<h4 id="3、今有物不知其数，三三数之剩二；五五数之剩三；七七数之剩二。问物几何?">3、今有物不知其数，三三数之剩二；五五数之剩三；七七数之剩二。问物几何?</h4><blockquote><p>中国古代著名算题。原载《孙子算经》卷下第二十六题：“今有物不知其数，三三数之剩二；五五数之剩三；七七数之剩二。问物几何?”当时虽已有了答案23，但它的系统解法是秦九韶在《数书九章·大衍求一术》中给出的。大衍求一术（也称作“中国剩余定理”）是中国古算中最有独创性的成就之一，属现代数论中的一次同余式组问题。</p>
+<footer><strong>维基百科</strong><cite><a href="http://baike.baidu.com/link?url=nUHiJ81_AIP_fx3ebRpG4BJBAkPfOdEkaqfT6g3_A12-soPBRF6fzKSQQRZuvNMDEe7lhfworl2v_TBb9g5Kba" target="_blank" rel="external">物不知数</a></cite></footer></blockquote>
+<a id="more"></a>
+<p>今天讨论一下中国剩余定理，先把这个‘物不知数’这个问题解决。</p>
+<p>参考答案：</p>
+<p>先回顾一下分水问题，我们首先对一种简单的情况进行数学抽象，得出要解决分水问题，就要先解出3×n - 5×m=1这个二元不定式，再根据扩展欧几里得算法求得m、n，得出结果，最后总结出：在区间[1,max{a,b}-1]上的a和b的最大公约数的整数倍是能够精确取出来的，这其实就是裴蜀定理。</p>
+<p>现在我们把这个数学抽象变化一下，变成这个样子：<embed src="http://latex.codecogs.com/svg.latex?{3x\mod5=1} " type="image/svg+xml">，抑或者是：<embed src="http://latex.codecogs.com/svg.latex?{3x\equiv1(\mod 5)} " type="image/svg+xml">，这两个等式都是表示3x除以5的余数为1（如有小伙伴还不明白等式是什么含义请参考<a href="https://zh.wikipedia.org/wiki/同餘" target="_blank" rel="external">同余</a>）。由于这两个式子和3×n - 5×m=1都是对分水问题的数学抽象，因此，都可以使用扩展欧几里得算法求解x，请记住这种方法，待会用的着。</p>
+<p>先给出同余的概念：当两个整数除以同一个正整数，若得相同余数，则两整数<a href="https://zh.wikipedia.org/wiki/同餘" target="_blank" rel="external">同余</a>。</p>
+<p>下面几个同余的性质接下来可能用得着：</p>
+<p>1）传递性</p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{\left.\begin{aligned}a&\equiv&b(\mod m)\\b&\equiv&c(\mod m)\end{aligned}\right\}\Rightarrow a\equiv c(\mod m)}" type="image/svg+xml"><br>2）保持基本运算</p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{\left.\begin{aligned}a&\equiv&b(\mod m)\\c&\equiv&d(\mod m)\end{aligned}\right\}\Rightarrow \left\{\begin{aligned}a\pm c&\equiv&b\pm d(\mod m)\\ac&\equiv&bd(\mod m)\end{aligned}\right.}" type="image/svg+xml"><br>这性质更可进一步引申成为这样：</p>
+<embed src="http://latex.codecogs.com/svg.latex?{a\equiv b(\mod m)\Rightarrow \left\{\begin{aligned}an&\equiv&bn(\mod m),\forall n\in\mathbb{Z}\\a^{n}&\equiv&b^{n}(\mod m),\forall n \in \mathbb{N}^{0}\end{aligned}\right.}" type="image/svg+xml">
+
+<p>好了，开始解题：</p>
+<p>以下解题过程中都是针对整数而言，没有特殊说明都是指整数。</p>
+<p>设这个整数为x，</p>
+<p>根据题意可得：</p>
+<embed src="http://latex.codecogs.com/svg.latex?{(S):\left\{\begin{aligned}x&\equiv&2 (\mod3)\\x&\equiv&3(\mod5)\\x&\equiv&2(\mod7)\end{aligned}\right.}" type="image/svg+xml">
+
+<p>我们来思考这么一种情况：</p>
+<p>如果一个整数X1满足，X1是5和7的倍数，除以3的余数是2，那么就能推出下面这组同余式：</p>
+<embed src="http://latex.codecogs.com/svg.latex?{\left\{\begin{aligned}x_1&\equiv&2 (\mod3)\\x_1&\equiv&0(\mod5)\\x_1&\equiv&0(\mod7)\end{aligned}\right.}" type="image/svg+xml">
+
+<p>同理，整数X2满足，X2是3和7的倍数，除以5的余数是3，整数X3满足，X3是3和5的倍数，除以7的余数是2：</p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{\left\{\begin{aligned}x_2&\equiv&0 (\mod3)\\x_2&\equiv&3(\mod5)\\x_2&\equiv&0(\mod7)\end{aligned}\right.}" type="image/svg+xml">，<embed src="http://latex.codecogs.com/svg.latex?{\left\{\begin{aligned}x_3&\equiv&0 (\mod3)\\x_3&\equiv&0(\mod5)\\x_3&\equiv&2(\mod7)\end{aligned}\right.}" type="image/svg+xml"><br>根据</p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{\left.\begin{aligned}a&\equiv&b(\mod m)\\c&\equiv&d(\mod m)\end{aligned}\right\}\Rightarrow a\pm c&\equiv&b\pm d(\mod m)}" type="image/svg+xml"><br>得：</p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{\left.\begin{aligned}x_1&\equiv&2(\mod 3)\\x_2&\equiv&0(\mod 3)\end{aligned}\right\}\Rightarrow x_1+ x_2&\equiv&2+0(\mod 3)}" type="image/svg+xml">，<embed src="http://latex.codecogs.com/svg.latex?{\left.\begin{aligned}x_1+x_2&\equiv&2(\mod 3)\\x_3&\equiv&0(\mod 3)\end{aligned}\right\}\Rightarrow x_1+ x_2+x_3&\equiv&2+0(\mod 3)}" type="image/svg+xml"><br>所以：</p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{ x_1+ x_2+x_3&\equiv&2(\mod 3)}" type="image/svg+xml">；<br>同理可得：</p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{ x_1+ x_2+x_3&\equiv&3(\mod 5)}" type="image/svg+xml">，<embed src="http://latex.codecogs.com/svg.latex?{ x_1+ x_2+x_3&\equiv&2(\mod 7)}" type="image/svg+xml">；</p>
+<p>因此，只要我们求得X1+X2+X3就是答案。现在我们来看一下X1怎么求解吧：</p>
+<p>根据</p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{\left\{\begin{aligned}x_1&\equiv&2 (\mod3)\\x_1&\equiv&0(\mod5)\\x_1&\equiv&0(\mod7)\end{aligned}\right.}" type="image/svg+xml">等价于<embed src="http://latex.codecogs.com/svg.latex?{5\times 7\times x_1^{'}&\equiv&2(\mod 3)}" type="image/svg+xml">，因此只要求出x1’即可求出答案，这个时候就得用上扩展欧几里得算法求出x1’，哈哈，整个人都神清气爽了有木有。我们再把上面等式翻译成分水问题，有35升和3升无刻度的两个容器，现在只能用35升的容器取水，3升的容器倒水，请精确取出2升水。</p>
+<p>我们还是根据扩展欧几里得算法得出：</p>
+<p>3×12 + 35×(-1) =1，这个结果好像不对头，它是用3升的容器取水，35升容器倒水的结果，那该怎么办呢？很简单等式两边同时乘以-1，就变成了35升的容器取水，3升的容器倒水，第12次倒水后得-1，这明显不可能，少倒一次水，剩下的就正好是2升水，所以x1’=1。</p>
+<p>同理求出<embed src="http://latex.codecogs.com/svg.latex?{ x_2^{'}=3,x_3^{'}=2}" type="image/svg+xml">；</p>
+<p>从而得出<embed src="http://latex.codecogs.com/svg.latex?{ x_1=35,x_2=63,x_3=30}" type="image/svg+xml">，</p>
+<p>最后得出x=X1+X2+X3=128，</p>
+<p>这个地方碰巧，很容易能取出2升水，我们还是按照我们先取出1升，让后再根据倍数关系，求得2升水吧，这样的话更具有规律性。</p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{\left.\begin{aligned}35\times 1+3\times (-12)&=&-1\\35\times 1+3\times(-11)&=&2\end{aligned}\right\}\Rightarrow 35\times 2+3\times (-23)=1}" type="image/svg+xml">，从而x1’=2×2=4，同理得x2’=3，x3’=2，此时我们称x1’、x2’、x3’为模逆元，由于它们形如：<embed src="http://latex.codecogs.com/svg.latex?{x_1^{'}\times M&\equiv&1(\mod m)}" type="image/svg+xml">，所以也称为数论倒数；</p>
+<p>从而得出x1=140，x2=63，x3=30，</p>
+<p>最后得出x=X1+X2+X3=233，</p>
+<p>聪明的小伙伴立刻明白答案不止一个，23也是对的，而且还有无数多个解，下面进一步说明一下：</p>
+<p>由于3,5,7这三个数是两两互质，所以它们的最小公倍数是3×5×7=105,105显然能同时整除3,5,7。根据下面这个性质：</p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{\left.\begin{aligned}a&\equiv&b(\mod m)\\c&\equiv&d(\mod m)\end{aligned}\right\}\Rightarrowa\pm c&\equiv&b\pm d(\mod m)}" type="image/svg+xml"><br>x+k×105显然还是满足</p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{\left\{\begin{aligned}x+k\times 105&\equiv&2(\mod 3)\\x+k\times 105&\equiv&3(\mod 5)\\x+k\times 105&\equiv&2(\mod 7)\end{aligned}\right.}" type="image/svg+xml">,<br>因此，这个问题的通解是：<embed src="http://latex.codecogs.com/svg.latex?{23+k\times 105,k\in\mathbb{Z}}" type="image/svg+xml">。</p>
+<p>Ok，解题完毕，物不知数就是中国剩余定理的一个实例。现在来看孙子定理也就是中国剩余定理：给出 i 个两两互质的整数，记为<embed src="http://latex.codecogs.com/svg.latex?{\display m_1,m_2,m_3,\cdots,m_i}" type="image/svg+xml">，它们的乘积为 P ；假设有一个未知数 M ，如果我们已知 M 分别除以这 m 个数所得的余数，记为<embed src="http://latex.codecogs.com/svg.latex?{\display r_1,r_2,r_3,\cdots,r_i}" type="image/svg+xml">那么在 0 到 P–1 的范围内，我们可以唯一地确定这个 M 。现代数学语言的描述，我就不贴了，有兴趣的同学就自己看wiki吧。</p>
+<p>我们从定义里面可以看出中国剩余定理有以下两点特性：</p>
+<p>1.当的整数时<embed src="http://latex.codecogs.com/svg.latex?{M\in[0,P-1]}" type="image/svg+xml">每一组余数（记为：<embed src="http://latex.codecogs.com/svg.latex?{\display r_1,r_2,r_3,\cdots,r_i}" type="image/svg+xml">）都有唯一的一个M与之对应，而且每一个M也只有一组余数与之对应，即M与<embed src="http://latex.codecogs.com/svg.latex?{\display r_1,r_2,r_3,\cdots,r_i}" type="image/svg+xml">是一一对应关系，由于M的取值恰好是任意整数对P求余的余数，所以结论也可以表述为任意整数对P的余数与<embed src="http://latex.codecogs.com/svg.latex?{\display r_1,r_2,r_3,\cdots,r_i}" type="image/svg+xml">是一一对应关系；</p>
+<p>2.在<embed src="http://latex.codecogs.com/svg.latex?{m\in\mathbb{Z}}" type="image/svg+xml">，如果余数数组看作m的一个函数，那么函数呈现周期性，且m的最小正周期是P。</p>
+<p>下面举个例：</p>
+<p>2个互质的整数3和10，它们的乘积是30，那么在[0,29]区间内的数，分别处以3和10的余数如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">i</th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+<th style="text-align:center">7</th>
+<th style="text-align:center">8</th>
+<th style="text-align:center">9</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">i mod 3</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">i mod 10</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">i</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">13</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">17</td>
+<td style="text-align:center">18</td>
+<td style="text-align:center">19</td>
+</tr>
+<tr>
+<td style="text-align:center">i mod 3</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">i mod 10</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">i</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">21</td>
+<td style="text-align:center">22</td>
+<td style="text-align:center">23</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">26</td>
+<td style="text-align:center">27</td>
+<td style="text-align:center">28</td>
+<td style="text-align:center">29</td>
+</tr>
+<tr>
+<td style="text-align:center">i mod 3</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">i mod 10</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">9</td>
+</tr>
+</tbody>
+</table>
+<p>由除以3的余数与除以10的余数组成的余数对没有出现重复现象，而且，整数M对30取模它的余数就是上表中i的取值，这就表明若果已知两个互质的整数3和10，可知它们的最小公倍数，记为gcd(3,10)，易得gcd(3,10)=3×10=30，此时，余数数对(x mod 3 , x mod 10)与x mod 30可以建立一个一一对应的关系。</p>
+<p>再来看看上面用蓝色标出的余数对(也就是能除以3余数为0的那些余数数对），刚好是10对，而且除以10的余数恰好沾满了0到9这十个数字（这同是解释了九九乘法表中，乘以3所在和列的那九个数的个位数正好沾满了1到9这九个数字），这是为什么呢，还记得分水问题中，哪些能准确取出来，哪些不能吗？小伙伴们，是不是同样的道理呀。</p>
+<p>今天还要完成一道题目：</p>
+<p>在银行办理业务的时候，通常我们是要排队的，然后你就要去叫号机取个号，假设号码是由AB这两个个字符组成的3位号码，在每个业务窗口的上方都会有一个LED的跑马灯，显示正在处理哪个号客户的业务。现在，假设在这个LED灯只显示3位的号码，而且灯的长度刚刚好只够显示3个字符。我们都知道跑马灯是循环滚动显示：比如说：刚开始的时候显示的ABB，过一小会儿，然后向左滚动一个字符变成了：BBA，如此滚动，滚动三次后又回到了ABB。假设某个字符串循环移位后才能得到另一个字符串，我们就认为这两个字符串属于同一组字符串。比如刚才那组就是通知字符串（或称同组号码），第一个字符串向左移一位就能第二字符串，问这样的同组字符串一共有多少组，如果号码是由3个、4个……n个字符组成时，一共有多少组呢？（这只是一个题目，实际生活中是不可能的，不然滚动时都不知道是在处理同组号码的哪一个号码）</p>
+<p>参考答案：</p>
+<p>先看由两个字母生成3位长的号码这种情况，一共可以生成<embed src="http://latex.codecogs.com/svg.latex?{\display 2^{3}}" type="image/svg+xml">个字符串，它们分别为：AAA,AAB,ABA,ABB,BAA,BAB,BBA,BBB，AAA和BBB其他字符串是无法通过循环移位得到的，排除掉，AAB可以由ABA和BAA移位得到，ABB可以由BAB和BBA移位得到，从这可以看出三位的号码，不管三位上的字符是什么，同组的字符串都只有3个，因为三位的字符只向同一方向循环移动3次又会回到原来的字符，每移动一次都是同组中的同一个字符串，因此每一组字符串中都只有3个字符串，所以答案是<embed src="http://latex.codecogs.com/svg.latex?{\display (2^{3}-2)\div 3=2}" type="image/svg+xml">，与刚才移动的结论相吻合，当然了这里我故意忽略了一种因素没有考虑，待会再说，接着用这种方式分析可以得出用n个字母成3位长的号码这种情况为<embed src="http://latex.codecogs.com/svg.latex?{\display (n^{3}-n)\div 3}" type="image/svg+xml">；3和4的情况可以用这个通式求得。</p>
+<p>现在我们再思考一种情况，如果号码的长度是4，而且跑马灯也刚刚好能显示4个字符，又会怎么样呢？用上面的通式，是不是<embed src="http://latex.codecogs.com/svg.latex?{\display (n^{3}-n)\div 4}" type="image/svg+xml">呢？答案是否定的，应为长度为4的号码，它可能会出现ABAB这种情况，而与这个号码同组的号码只有BABA，没有想上面分析的那样有4个号码，所以除以4这显然是错的，那在什么情况下上面这个通式是正确的呢？我们仔细想一想，如果号码的连续x（x&gt;1，且x<n，n是号码的长度）个字符重复y次之后就是整个号码字符串，这种情况就不满足这个通式，否则，就满足通式。我们再来分析一下这句话“如果号码的连续x（x>1且x<m，m是号码的长度）个字符重复y次之后就是整个号码字符串”，翻译成数学语言就是xy=m，(x>1且x&lt;m)，要不满足这个条件，也就是说m除了能倍1和m整除外，不能倍任何整数整除，也就是说当m为质数的时候才满足通式，由此可得：</m，m是号码的长度）个字符重复y次之后就是整个号码字符串”，翻译成数学语言就是xy=m，(x></n，n是号码的长度）个字符重复y次之后就是整个号码字符串，这种情况就不满足这个通式，否则，就满足通式。我们再来分析一下这句话“如果号码的连续x（x></p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{\display (n^{m}-n)\div m}" type="image/svg+xml">是由n个字符组成的m位号码的同组号码的组数，因为是组数所以一定是一个整数值，从而推出：当m为质数时：<embed src="http://latex.codecogs.com/svg.latex?{\display (n^{m}-n)&\equiv&0(\mod m)}" type="image/svg+xml">，根据同余的性质，将式子等价变换一下得：</p>
+<p>当m是质数时：<embed src="http://latex.codecogs.com/svg.latex?{\display (n^{m}&\equiv&n(\mod m)}" type="image/svg+xml">，这就是费马小定理。根据性质：</p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{\left.\begin{aligned}a&\equiv&b(\mod m)\\c&\equiv&d(\mod m)\end{aligned}\right\}\Rightarrow a\bullet c&\equiv&b\bullet d(\mod m)}" type="image/svg+xml">，<br>由于：</p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{\left.\begin{aligned}n^{m}&\equiv&n(\mod m)\\n&\equiv&n(\mod m)\end{aligned}\right\}\Rightarrow n^{m}\bullet n&\equiv&n\bullet n(\mod m)}" type="image/svg+xml"><br>，得：</p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{n^{m+1}&\equiv&n^{2}(\mod m)}" type="image/svg+xml"><br>，同理可得：</p>
+<p><embed src="http://latex.codecogs.com/svg.latex?{n^{m+2}&\equiv&n^{3}(\mod m),\cdots,{n^{2m-2}&\equiv&n^{m-1}(\mod m),{n^{m-1}&\equiv&n^{m}&\equiv&n(\mod m)}" type="image/svg+xml"><br>也就是说，如果 m 是一个质数的话，那么对于任意一个整数 n ，随着 i (<embed src="http://latex.codecogs.com/svg.latex?{\display i\in \mathbb{N}^0}" type="image/svg+xml">)的增加， n 的 i 次方除以 m 的余数将会呈现出长度为 m – 1 的周期性，这就是费马小定理另一种表述。</p>
+<p>现在还有一个问题，如果m不是质数呢？</p>
+<p>参考资料：</p>
+<ol>
+<li><a href="http://www.matrix67.com/blog/archives/5100" target="_blank" rel="external">跨越千年的RSA算法</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank" rel="external">RSA算法原理</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2015/02/03/RSA系类（三）：从物不知数到中国剩余定理和费马小定理/" data-id="ciy8iux9k002lnkvu2tau81r2" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/RSA算法/">RSA算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/中国剩余定理/">中国剩余定理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/数学/">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/费马小定理/">费马小定理</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2015/02/04/RSA系类（四）：完結篇/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          RSA系类（四）：完結篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2015/02/02/RSA系类（二）：分水问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">RSA系类（二）：分水问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<section id="comment">
+  <h1 class="title">comment</h1>
+  <div id="disqus_thread">
+  <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2071579"></script>
+  <!-- UY END -->
+  </div>
+</section>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Linux防火墙/">Linux防火墙</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Ruby/">Ruby</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/信息编码/">信息编码</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/微信开发/">微信开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/杂谈/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/笔试/">笔试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/算法/">算法</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/计算机基础/">计算机基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/计算机网络/">计算机网络</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/C-11/">C++11</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Netfilter/">Netfilter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RSA算法/">RSA算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Ruby/">Ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/iptables/">iptables</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/中国剩余定理/">中国剩余定理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/信息编码/">信息编码</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/关于博客/">关于博客</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/字符串/">字符串</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/并发编程/">并发编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/微信开发/">微信开发</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/总结/">总结</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/扩展辗转相除法/">扩展辗转相除法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/教程/">教程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/数学/">数学</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/杂谈/">杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/欧拉函数/">欧拉函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔试/">笔试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔试题/">笔试题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/网络/">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/计算机基础/">计算机基础</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/计算机网络/">计算机网络</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/费马小定理/">费马小定理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/辗转相除法/">辗转相除法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/防火墙/">防火墙</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/C-11/" style="font-size: 17.5px;">C++11</a> <a href="/blog/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/blog/tags/Netfilter/" style="font-size: 10px;">Netfilter</a> <a href="/blog/tags/RSA算法/" style="font-size: 17.5px;">RSA算法</a> <a href="/blog/tags/Ruby/" style="font-size: 15px;">Ruby</a> <a href="/blog/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/blog/tags/中国剩余定理/" style="font-size: 10px;">中国剩余定理</a> <a href="/blog/tags/信息编码/" style="font-size: 12.5px;">信息编码</a> <a href="/blog/tags/关于博客/" style="font-size: 10px;">关于博客</a> <a href="/blog/tags/字符串/" style="font-size: 12.5px;">字符串</a> <a href="/blog/tags/并发编程/" style="font-size: 10px;">并发编程</a> <a href="/blog/tags/微信开发/" style="font-size: 10px;">微信开发</a> <a href="/blog/tags/总结/" style="font-size: 10px;">总结</a> <a href="/blog/tags/扩展辗转相除法/" style="font-size: 10px;">扩展辗转相除法</a> <a href="/blog/tags/教程/" style="font-size: 10px;">教程</a> <a href="/blog/tags/数学/" style="font-size: 20px;">数学</a> <a href="/blog/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/blog/tags/欧拉函数/" style="font-size: 10px;">欧拉函数</a> <a href="/blog/tags/笔试/" style="font-size: 10px;">笔试</a> <a href="/blog/tags/笔试题/" style="font-size: 12.5px;">笔试题</a> <a href="/blog/tags/网络/" style="font-size: 10px;">网络</a> <a href="/blog/tags/计算机基础/" style="font-size: 12.5px;">计算机基础</a> <a href="/blog/tags/计算机网络/" style="font-size: 12.5px;">计算机网络</a> <a href="/blog/tags/费马小定理/" style="font-size: 12.5px;">费马小定理</a> <a href="/blog/tags/辗转相除法/" style="font-size: 10px;">辗转相除法</a> <a href="/blog/tags/防火墙/" style="font-size: 10px;">防火墙</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/08/">八月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/06/">六月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2016/08/09/C-11特性与应用（三）/">C++11特性与应用（三）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/08/04/C-11特性与应用（二）/">C++11特性与应用（二）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/08/01/C-11特性与应用（一）：C-11语言特性/">C++11特性与应用（一）：C++11语言特性</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/07/22/C-11并发编程（一）：你好，并发世界/">C++11并发编程（一）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/06/06/别样的进制/">别样的进制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 翰海尘沙<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">主页</a>
+  
+    <a href="/blog/archives/" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<script src="/blog/js/jquery2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/blog/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

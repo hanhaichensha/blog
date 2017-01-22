@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>初识Netfilter/iptables | 翰海尘沙</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、什么是Netfilter/iptables？iptables是一个运行在用户空间的应用软件，通过控制Linux内核netfilter模块，来管理网络数据包的流动与转送。在大部分的Linux系统上面，iptables是使用/usr/sbin/iptables来操作，文件则放置在手册页底下，可以通过 man iptables 指令获取。通常iptables都需要内核层级的模块来配合运作，Xtabl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识Netfilter/iptables">
+<meta property="og:url" content="http://hanhaichensha.coding.me/2016/03/25/初识Netfilter-iptables/index.html">
+<meta property="og:site_name" content="翰海尘沙">
+<meta property="og:description" content="一、什么是Netfilter/iptables？iptables是一个运行在用户空间的应用软件，通过控制Linux内核netfilter模块，来管理网络数据包的流动与转送。在大部分的Linux系统上面，iptables是使用/usr/sbin/iptables来操作，文件则放置在手册页底下，可以通过 man iptables 指令获取。通常iptables都需要内核层级的模块来配合运作，Xtabl">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/25/初识Netfilter-iptables/Netfilter-packet-flow.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/25/初识Netfilter-iptables/iptables数据包流程.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/25/初识Netfilter-iptables/Netfilter与iptabales关系.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/25/初识Netfilter-iptables/iptables策略组成.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/25/初识Netfilter-iptables/隐含匹配.jpg">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/25/初识Netfilter-iptables/显式匹配.jpg">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/25/初识Netfilter-iptables/虚拟机网络配置1.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/25/初识Netfilter-iptables/虚拟机网络配置2.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/25/初识Netfilter-iptables/虚拟机网络配置3.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/25/初识Netfilter-iptables/模拟网络.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/25/初识Netfilter-iptables/访问LM服务1.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/25/初识Netfilter-iptables/设置默认网关.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2016/03/25/初识Netfilter-iptables/访问LM服务2.png">
+<meta property="og:updated_time" content="2016-11-04T05:54:16.156Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识Netfilter/iptables">
+<meta name="twitter:description" content="一、什么是Netfilter/iptables？iptables是一个运行在用户空间的应用软件，通过控制Linux内核netfilter模块，来管理网络数据包的流动与转送。在大部分的Linux系统上面，iptables是使用/usr/sbin/iptables来操作，文件则放置在手册页底下，可以通过 man iptables 指令获取。通常iptables都需要内核层级的模块来配合运作，Xtabl">
+  
+    <link rel="alternative" href="/blog/atom.xml" title="翰海尘沙" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/css/images/favicon.jpg">
+  
+  <link href="/blog/css/font.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">翰海尘沙</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">进击的程序员</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">主页</a>
+        
+          <a class="main-nav-link" href="/blog/archives/">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/s" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="wd" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hanhaichensha.coding.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-初识Netfilter-iptables" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2016/03/25/初识Netfilter-iptables/" class="article-date">
+  <time datetime="2016-03-25T12:49:54.000Z" itemprop="datePublished">2016-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/Linux防火墙/">Linux防火墙</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      初识Netfilter/iptables
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、什么是Netfilter/iptables？">一、什么是Netfilter/iptables？</h3><blockquote><p>iptables是一个运行在用户空间的应用软件，通过控制Linux内核netfilter模块，来管理网络数据包的流动与转送。在大部分的Linux系统上面，iptables是使用/usr/sbin/iptables来操作，文件则放置在手册页底下，可以通过 man iptables 指令获取。通常iptables都需要内核层级的模块来配合运作，Xtables是主要在内核层级里面iptables API运作功能的模块。因相关动作上的需要，iptables的操作需要用到超级用户的权限。</p>
+<p>目前iptables系在2.4、2.6及3.0的内核底下运作，旧版的Linux内核（2.2）使用ipchains及ipwadm（Linux 2.0）来达成类似的功能，2014年1月19日起发行的新版Linux内核（3.13后）则使用nftables取而代之。</p>
+<footer><strong>维基百科</strong><cite><a href="https://zh.wikipedia.org/wiki/Iptables" target="_blank" rel="external">zh.wikipedia.org/wiki/Iptables</a></cite></footer></blockquote>
+<a id="more"></a>
+<p>以上就是中文维基百科上给出的定义，看完后，仍然不知所云，iptables的功能具体是什么？它与NetFilter是什么关系？</p>
+<p>iptables是用来管理网络数据包的流动和转送的，也就是控制数据包的流向。我们都知道网络数据包在流经一台电脑时，数据包一般只有两种流向，一是目的地址是本机的：网卡驱动接收数据包-&gt;路由程序处理-&gt;本地协议栈处理-&gt;网卡驱动发送数据包；另一种流向是目的地址不是本机：网卡驱动接收数据包-&gt;路由程序处理数据包-&gt;将数据包转送到另一网卡-&gt;网卡驱动发送数据包。为了能灵活的管理数据包，Linux内核使用Netfilter模块在这些主要流向的路径的关键位置添加了一些钩子。如下图：</p>
+<img src="/blog/2016/03/25/初识Netfilter-iptables/Netfilter-packet-flow.png" alt="Netfilter-packet-flow" title="Netfilter-packet-flow">
+<p>上图过于复杂，为了便于理解，使用下面简化版的流程：</p>
+<img src="/blog/2016/03/25/初识Netfilter-iptables/iptables数据包流程.png" alt="iptables数据包流程" title="iptables数据包流程">
+<p>从上图可知，Netfilter在几个固定的位置设置了5个钩子：</p>
+<ol>
+<li>NF_INET_PRE_ROUTING:在网卡接收到数据包后，进入路由选择之前；</li>
+<li>NF_INET_LOCAL_IN:在路由判断目的地址是本机之后，交给本地协议栈处理之前；</li>
+<li>NF_INET_FORWARD:在路由判断目的地址不是本机之后，交给另一个网卡发送之前；</li>
+<li>NF_INET_LOCAL_OUT:在本地协议栈和应用程序处理之后，交给网卡发送之前；</li>
+<li>NF_INET_POST_ROUTING:在交给网卡发送之前，这是数据流中的最后一个钩子。</li>
+</ol>
+<p>既然有钩子，就可以定义与之对应的处理函数，这些函数也已经在Netfilter中定义好，并且与钩子绑定了。感觉所有的活，Netfilter都已经做好了，还有iptables什么事呢？</p>
+<p>其实不然，先来看看Netfilter的四个基本模块：</p>
+<ol>
+<li>conntrack模块：连接追踪模块</li>
+<li>Filter模块：过滤模块</li>
+<li>Nat模块：地址转换模块</li>
+<li>Mangle模块：数据包修改模块<br>其中conntrack模块是基础核心模块，而其他几个模块是在此模块的基础上，维护一张全局表，以实现各模块相应的功能。为了灵活的管理数据包，iptables就可以调用Netfilter提供的接口想这些全局表中添加相应的控制条件和处理。以此，Netfilter其实就是提供一组系统调用以实现管理网络数据包流动和转送的框架。</li>
+</ol>
+<p>而iptables则是提供命令处理的用户空间应用程序，同时提供了一些扩展模块以加载到内核对数据包进行处理。Netfilter和iptables的关系如图：</p>
+<img src="/blog/2016/03/25/初识Netfilter-iptables/Netfilter与iptabales关系.png" alt="Netfilter与iptabales关系" title="Netfilter与iptabales关系">
+<p>为了方便处理用户命令的一组有序控制策略，iptables使用table、chain、rule来表示一条策略。其中table与Netfilter中的各模块中维护的全局表进行对应，chain与挂载点（即钩子）相对应，rule处理规则。iptables策略组成如图：</p>
+<img src="/blog/2016/03/25/初识Netfilter-iptables/iptables策略组成.png" alt="iptables策略组成" title="iptables策略组成">
+<h3 id="二、_iptables命令格式">二、 iptables命令格式</h3><p>iptables命令语法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables [-t 表名] 命令 [条件匹配] [目标]</span><br></pre></td></tr></table></figure></p>
+<p>下面是更加详细的命令格式：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables [ -t 表名] 命令选项 [链名] [条件匹配] [-j 目标动作或跳转]</span><br></pre></td></tr></table></figure></p>
+<h4 id="1-表名">1.表名</h4><p>有四张表：filter(默认值)、NAT、mangle、raw。</p>
+<h4 id="2-命令选项">2.命令选项</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">选项名</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-A</td>
+<td>在指定链的末尾添加（–append）一条新的规则</td>
+</tr>
+<tr>
+<td style="text-align:center">-D</td>
+<td>删除（–delete）指定链中的某一条规则，按规则序号或内容确定要删除的规则</td>
+</tr>
+<tr>
+<td style="text-align:center">-I</td>
+<td>在指定链中插入（–insert）一条新的规则，默认在链的开头插入</td>
+</tr>
+<tr>
+<td style="text-align:center">-R</td>
+<td>修改、替换（–replace）指定链中的一条规则，按规则序号或内容确定</td>
+</tr>
+<tr>
+<td style="text-align:center">-L</td>
+<td>列出（–list）指定链中的所有的规则进行查看，默认列出表中所有链的内容</td>
+</tr>
+<tr>
+<td style="text-align:center">-F</td>
+<td>清空（–flush）指定链中的所有规则，默认清空表中所有链的内容</td>
+</tr>
+<tr>
+<td style="text-align:center">-N</td>
+<td>新建（–new-chain）一条用户自己定义的规则链</td>
+</tr>
+<tr>
+<td style="text-align:center">-X</td>
+<td>删除指定表中用户自定义的规则链（–delete-chain）</td>
+</tr>
+<tr>
+<td style="text-align:center">-P</td>
+<td>设置指定链的默认策略（–policy）</td>
+</tr>
+<tr>
+<td style="text-align:center">-n</td>
+<td>用数字形式（–numeric）显示输出结果，若显示主机的 IP地址而不是主机名</td>
+</tr>
+<tr>
+<td style="text-align:center">-P</td>
+<td>设置指定链的默认策略（–policy）</td>
+</tr>
+<tr>
+<td style="text-align:center">-v</td>
+<td>查看规则列表时显示详细（–verbose）的信息</td>
+</tr>
+<tr>
+<td style="text-align:center">-V</td>
+<td>查看iptables命令工具的版本（–Version）信息</td>
+</tr>
+<tr>
+<td style="text-align:center">-h</td>
+<td>查看命令帮助信息（–help）</td>
+</tr>
+<tr>
+<td style="text-align:center">–line-number</td>
+<td>查看规则列表时，同时显示规则在链中的顺序号</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-链名">3.链名</h4><p>通过之前分析，主要有一下五条链：</p>
+<ol>
+<li>PREROUTING：与NF_INET_PRE_ROUTING钩子相对应，此链的处理时机也与NF_INET_PRE_ROUTING的时机相对应。</li>
+<li>INPUT：与NF_INET_LOCAL_IN钩子相对应，此链的处理时机也与NF_INET_LOCAL_IN的时机相对应。</li>
+<li>FORWARD：与NF_INET_LOCAL_OUT钩子相对应，此链的处理时机也与NF_INET_LOCAL_OUT的时机相对应。</li>
+<li>OUTPUT：与NF_INET_LOCAL_OUT钩子相对应，此链的处理时机也与NF_INET_LOCAL_OUT的时机相对应。</li>
+<li>POSTROUTING：与NF_INET_POST_ROUTING钩子相对应，此链的处理时机也与NF_INET_POST_ROUTING的时机相对应。</li>
+</ol>
+<h4 id="4-匹配条件">4.匹配条件</h4><h5 id="1）通用匹配">1）通用匹配</h5><table>
+<thead>
+<tr>
+<th style="text-align:center">匹配参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-p</td>
+<td>指定规则协议，如tcp, udp,icmp等，可以使用all来指定所有协议</td>
+</tr>
+<tr>
+<td style="text-align:center">-s</td>
+<td>指定数据包的源地址参数，可以使IP地址、网络地址、主机名</td>
+</tr>
+<tr>
+<td style="text-align:center">-d</td>
+<td>指定目的地址</td>
+</tr>
+<tr>
+<td style="text-align:center">-i</td>
+<td>输入接口</td>
+</tr>
+<tr>
+<td style="text-align:center">-o</td>
+<td>输出接口</td>
+</tr>
+</tbody>
+</table>
+<h5 id="2）隐含匹配">2）隐含匹配</h5><img src="/blog/2016/03/25/初识Netfilter-iptables/隐含匹配.jpg" alt="隐含匹配" title="隐含匹配">
+<h5 id="3）显式匹配">3）显式匹配</h5><img src="/blog/2016/03/25/初识Netfilter-iptables/显式匹配.jpg" alt="显式匹配" title="显式匹配">
+<h4 id="5-目标动作或跳转">5.目标动作或跳转</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">目标项</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ACCEPT</td>
+<td>当信息包与具有ACCEPT目标的规则完全匹配时，会被接受（允许它前往目的地）</td>
+</tr>
+<tr>
+<td style="text-align:center">DROP</td>
+<td>当信息包与具有DROP目标的规则完全匹配时，会阻塞该信息包，并且不对它做进一步处理。该目标被指定为-j DROP</td>
+</tr>
+<tr>
+<td style="text-align:center">REJECT</td>
+<td>该目标的工作方式与DROP目标相同，但它比DROP好。和DROP不同，REJECT不会在服务器和客户机上留下死套接字。另外，REJECT将错误消息发回给信息包的发送方。该目标被指定为-j REJECT</td>
+</tr>
+<tr>
+<td style="text-align:center">RETURN</td>
+<td>在规则中设置的RETURN目标让与该规则匹配的信息包停止遍历包含该规则的链。如果链是如INPUT之类的主链，则使用该链的默认策略处理信息包。它被指定为-jump RETURN</td>
+</tr>
+<tr>
+<td style="text-align:center">LOG</td>
+<td>表示将包的有关信息记录入日志</td>
+</tr>
+<tr>
+<td style="text-align:center">TOS</td>
+<td>表示改写数据包的TOS值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="三、_iptables应用">三、  iptables应用</h3><ol>
+<li><p>删除iptables现有规则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables –F</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看iptables规则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables –L (iptables –L –v -n)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>增加一条规则到最后</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -i eth0 -p tcp --dport <span class="number">80</span> -m state --state NEW,ESTABLISHED -j ACCEPT</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加一条规则到指定位置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT <span class="number">2</span> -i eth0 -p tcp --dport <span class="number">80</span> -m state --state NEW,ESTABLISHED -j ACCEPT</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除一条规则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptabels -D INPUT <span class="number">2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改一条规则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -R INPUT <span class="number">3</span> -i eth0 -p tcp --dport <span class="number">80</span> -m state --state NEW,ESTABLISHED -j ACCEPT</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置默认策略</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -P INPUT DROP</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="四、实战——使用iptables的源地址转发功能">四、实战——使用iptables的源地址转发功能</h3><p>上面就是一些简单的介绍，下面模拟内网通过网关访问外网的一个简单例子来看看iptables的应用。</p>
+<h4 id="1-准备：">1.准备：</h4><ol>
+<li>用虚拟机开启两台机器，分别命名为VM1（Virtual Machine 1）和VM2，VM2当作局域网内的机器，VM2当作网关，真实机器（即本机）LM（Local Machine）当作外网；</li>
+<li>现在分别为VM1配置网络，ip地址是192.186.10.1，掩码是255.255.255.0；VM2配置两网卡，网络配置分别为：网卡1：ip地址是192.168.10.2，掩码是255.255.255.0，网卡2：ip地址是10.126.72.203，掩码是255.255.255.0；LM的网络配置是：ip地址是10.126.72.23，掩码是255.255.255.0。</li>
+<li>在LM上搭建一个web服务器，配置网址www.LM.com。</li>
+</ol>
+<p>注意：怎么配置两台虚拟机在同一个局域网内，以及如何配置本机和虚拟机在同一网络中并相互访问呢？</p>
+<p>这里备注一下：下面的配置均是以VirtualBox为例。</p>
+<ol>
+<li>配置虚拟机局域网</li>
+</ol>
+<img src="/blog/2016/03/25/初识Netfilter-iptables/虚拟机网络配置1.png" alt="虚拟机网络配置1" title="虚拟机网络配置1">
+<img src="/blog/2016/03/25/初识Netfilter-iptables/虚拟机网络配置2.png" alt="虚拟机网络配置2" title="虚拟机网络配置2">
+<ol>
+<li>配置本机和虚拟机在同一网络中并相互访问<img src="/blog/2016/03/25/初识Netfilter-iptables/虚拟机网络配置3.png" alt="虚拟机网络配置3" title="虚拟机网络配置3">
+</li>
+</ol>
+<p>准备工作基本完成，如果顺利的话，最后将得到如下网络：</p>
+<img src="/blog/2016/03/25/初识Netfilter-iptables/模拟网络.png" alt="模拟网络" title="模拟网络">
+<h4 id="2-实现VM1通过VM2访问LM">2.实现VM1通过VM2访问LM</h4><p>由于LM的Web服务(www.lm.com)是本地服务并没有申请域名，还需要手动在VM1和VM2主机的/etc/hosts中添加如下一语句，否则无法对其进行域名解析：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10.126</span>.<span class="number">72.23</span>     www.lm.com</span><br></pre></td></tr></table></figure>
+<p>毋庸置疑，开始VM1无法访问LM的Web服务（www.lm.com）。</p>
+<img src="/blog/2016/03/25/初识Netfilter-iptables/访问LM服务1.png" alt="访问LM服务1" title="访问LM服务1">
+<p>下面将实现此访问。</p>
+<ol>
+<li><p>首先开启内核转发的模块<br>向/etc/sysctl.conf文件添加或这修改net.ipv4.ip_forward的值为1（即net.ipv4.ip_forward = 1）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/sysctl.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置VM1的默认网关为VM2，即192.168.10.2，</p>
+</li>
+</ol>
+<img src="/blog/2016/03/25/初识Netfilter-iptables/设置默认网关.png" alt="设置默认网关" title="设置默认网关">
+<ol>
+<li><p>在VM2上安装iptables及服务（此处系统为CentOS 7），并启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum -y install iptables</span><br><span class="line">sudo yum -y install iptables-services</span><br><span class="line">sudo systemctl start iptables.service</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置iptables策略</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo iptables -F</span><br><span class="line">sudo iptalbes -t nat -F</span><br><span class="line">sudo iptables -t nat -A POSTROUTING <span class="operator">-s</span> <span class="number">192.168</span>.<span class="number">10.1</span>/<span class="number">32</span> -j SNAT --to <span class="number">10.126</span>.<span class="number">72.203</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这就可以实现VM1访问LM上的服务了。</p>
+<img src="/blog/2016/03/25/初识Netfilter-iptables/访问LM服务2.png" alt="访问LM服务2" title="访问LM服务2">
+<h3 id="五、小结">五、小结</h3><p>以上简单的介绍了iptable的基本概念和基本命令，以及命令的简单使用。这只是冰山一角，iptables还能实现如下功能：</p>
+<ol>
+<li>建立一个基于有状态和无状态的包过滤规则的因特网防火墙。</li>
+<li>部署高度可用的有状态和无状态防火墙集群。</li>
+<li>当公网ip不够用时，可以进行ip伪装，属于NAT模块。</li>
+<li>使用NAT来实现透明代理。</li>
+<li>辅助内核网络模块中的tc和iproute2去构造一个复杂的QoS和路由策略。</li>
+<li>做进一步处理比如比如更改IP包头中的TOS/DSCP/ECN参数。</li>
+</ol>
+<h3 id="参考文章">参考文章</h3><p><a href="http://drops.wooyun.org/tips/1424" target="_blank" rel="external">Iptables入门教程</a><br><a href="http://blog.chinaunix.net/uid-20786208-id-3429074.html" target="_blank" rel="external">Netfilter—框架的设计</a><br><a href="http://seanlook.com/2014/02/23/iptables-understand/" target="_blank" rel="external">iptables防火墙原理详解</a><br><a href="http://blog.jobbole.com/?s=iptables%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90" target="_blank" rel="external">iptables深入解析</a><br><a href="http://blog.csdn.net/ljy1988123/article/details/50458044?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">Linux内核工程导论——网络：Netfilter概览</a><br><a href="http://vinllen.com/netfilteriptableskuang-jia-zong-jie/" target="_blank" rel="external">Netfilter/iptables框架总结</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2016/03/25/初识Netfilter-iptables/" data-id="ciy8iux63001jnkvuz5j2lf7m" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Netfilter/">Netfilter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/iptables/">iptables</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/网络/">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/防火墙/">防火墙</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2016/06/04/别样的整数表示和运算/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          别样的整数表示和运算
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2016/03/06/单击微信文章进入原文的方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">单击微信文章进入原文的方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<section id="comment">
+  <h1 class="title">comment</h1>
+  <div id="disqus_thread">
+  <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2071579"></script>
+  <!-- UY END -->
+  </div>
+</section>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Linux防火墙/">Linux防火墙</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Ruby/">Ruby</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/信息编码/">信息编码</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/微信开发/">微信开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/杂谈/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/笔试/">笔试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/算法/">算法</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/计算机基础/">计算机基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/计算机网络/">计算机网络</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/C-11/">C++11</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Netfilter/">Netfilter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RSA算法/">RSA算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Ruby/">Ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/iptables/">iptables</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/中国剩余定理/">中国剩余定理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/信息编码/">信息编码</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/关于博客/">关于博客</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/字符串/">字符串</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/并发编程/">并发编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/微信开发/">微信开发</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/总结/">总结</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/扩展辗转相除法/">扩展辗转相除法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/教程/">教程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/数学/">数学</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/杂谈/">杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/欧拉函数/">欧拉函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔试/">笔试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔试题/">笔试题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/网络/">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/计算机基础/">计算机基础</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/计算机网络/">计算机网络</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/费马小定理/">费马小定理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/辗转相除法/">辗转相除法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/防火墙/">防火墙</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/C-11/" style="font-size: 17.5px;">C++11</a> <a href="/blog/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/blog/tags/Netfilter/" style="font-size: 10px;">Netfilter</a> <a href="/blog/tags/RSA算法/" style="font-size: 17.5px;">RSA算法</a> <a href="/blog/tags/Ruby/" style="font-size: 15px;">Ruby</a> <a href="/blog/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/blog/tags/中国剩余定理/" style="font-size: 10px;">中国剩余定理</a> <a href="/blog/tags/信息编码/" style="font-size: 12.5px;">信息编码</a> <a href="/blog/tags/关于博客/" style="font-size: 10px;">关于博客</a> <a href="/blog/tags/字符串/" style="font-size: 12.5px;">字符串</a> <a href="/blog/tags/并发编程/" style="font-size: 10px;">并发编程</a> <a href="/blog/tags/微信开发/" style="font-size: 10px;">微信开发</a> <a href="/blog/tags/总结/" style="font-size: 10px;">总结</a> <a href="/blog/tags/扩展辗转相除法/" style="font-size: 10px;">扩展辗转相除法</a> <a href="/blog/tags/教程/" style="font-size: 10px;">教程</a> <a href="/blog/tags/数学/" style="font-size: 20px;">数学</a> <a href="/blog/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/blog/tags/欧拉函数/" style="font-size: 10px;">欧拉函数</a> <a href="/blog/tags/笔试/" style="font-size: 10px;">笔试</a> <a href="/blog/tags/笔试题/" style="font-size: 12.5px;">笔试题</a> <a href="/blog/tags/网络/" style="font-size: 10px;">网络</a> <a href="/blog/tags/计算机基础/" style="font-size: 12.5px;">计算机基础</a> <a href="/blog/tags/计算机网络/" style="font-size: 12.5px;">计算机网络</a> <a href="/blog/tags/费马小定理/" style="font-size: 12.5px;">费马小定理</a> <a href="/blog/tags/辗转相除法/" style="font-size: 10px;">辗转相除法</a> <a href="/blog/tags/防火墙/" style="font-size: 10px;">防火墙</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/08/">八月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/06/">六月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2016/08/09/C-11特性与应用（三）/">C++11特性与应用（三）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/08/04/C-11特性与应用（二）/">C++11特性与应用（二）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/08/01/C-11特性与应用（一）：C-11语言特性/">C++11特性与应用（一）：C++11语言特性</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/07/22/C-11并发编程（一）：你好，并发世界/">C++11并发编程（一）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/06/06/别样的进制/">别样的进制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 翰海尘沙<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">主页</a>
+  
+    <a href="/blog/archives/" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<script src="/blog/js/jquery2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/blog/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

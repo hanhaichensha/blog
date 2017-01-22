@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>计算机网络概述 | 翰海尘沙</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基本原理在《也说“当你输入一个网址，实际会发生什么?”》中介绍到，一台电脑要跟另一台电脑进行通信（所谓通信就是进行数据交换，比如：从其他电脑上下载一个文件到自己电脑等等，如果没有网络，我们一般的做法是使用U盘、光盘等存储设备将文件从某电脑上拷贝到U盘或者刻录到光盘，然后再把U盘或者光盘的文件拷贝到自己电脑上），说道一个重要的步骤就是找到想进行通信的计算机的IP地址（使用DNS协议实现），只是这样就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络概述">
+<meta property="og:url" content="http://hanhaichensha.coding.me/2015/11/26/计算机网络概述/index.html">
+<meta property="og:site_name" content="翰海尘沙">
+<meta property="og:description" content="基本原理在《也说“当你输入一个网址，实际会发生什么?”》中介绍到，一台电脑要跟另一台电脑进行通信（所谓通信就是进行数据交换，比如：从其他电脑上下载一个文件到自己电脑等等，如果没有网络，我们一般的做法是使用U盘、光盘等存储设备将文件从某电脑上拷贝到U盘或者刻录到光盘，然后再把U盘或者光盘的文件拷贝到自己电脑上），说道一个重要的步骤就是找到想进行通信的计算机的IP地址（使用DNS协议实现），只是这样就">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2015/11/26/计算机网络概述/图一.jpg">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2015/11/26/计算机网络概述/图二.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2015/11/26/计算机网络概述/图三.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2015/11/26/计算机网络概述/图四.png">
+<meta property="og:image" content="http://hanhaichensha.coding.me/blog/2015/11/26/计算机网络概述/图五.png">
+<meta property="og:updated_time" content="2016-11-04T05:54:16.265Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络概述">
+<meta name="twitter:description" content="基本原理在《也说“当你输入一个网址，实际会发生什么?”》中介绍到，一台电脑要跟另一台电脑进行通信（所谓通信就是进行数据交换，比如：从其他电脑上下载一个文件到自己电脑等等，如果没有网络，我们一般的做法是使用U盘、光盘等存储设备将文件从某电脑上拷贝到U盘或者刻录到光盘，然后再把U盘或者光盘的文件拷贝到自己电脑上），说道一个重要的步骤就是找到想进行通信的计算机的IP地址（使用DNS协议实现），只是这样就">
+  
+    <link rel="alternative" href="/blog/atom.xml" title="翰海尘沙" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/css/images/favicon.jpg">
+  
+  <link href="/blog/css/font.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">翰海尘沙</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">进击的程序员</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">主页</a>
+        
+          <a class="main-nav-link" href="/blog/archives/">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/s" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="wd" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hanhaichensha.coding.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-计算机网络概述" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/11/26/计算机网络概述/" class="article-date">
+  <time datetime="2015-11-26T12:51:27.000Z" itemprop="datePublished">2015-11-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/计算机网络/">计算机网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      计算机网络概述
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="基本原理">基本原理</h3><p>在《也说“当你输入一个网址，实际会发生什么?”》中介绍到，一台电脑要跟另一台电脑进行通信（所谓通信就是进行数据交换，比如：从其他电脑上下载一个文件到自己电脑等等，如果没有网络，我们一般的做法是使用U盘、光盘等存储设备将文件从某电脑上拷贝到U盘或者刻录到光盘，然后再把U盘或者光盘的文件拷贝到自己电脑上），说道一个重要的步骤就是找到想进行通信的计算机的IP地址（使用DNS协议实现），只是这样就能通信了吗？我只能说小伙子你真是“too young too simple”。这只是万里长征的一小步，为了后面知识点介绍的方便和对网络通信有大局观，现在先简单的概括性的对网络进行介绍。  </p>
+<p>上篇日记中说到，在浏览器地址栏中输入www.baidu.com时，我们的计算机会把这个域名转换成IP地址，这个宏观过程就是之前讲过的DNS协议查询的那样，但是现在的问题是，本机也就是192.168.1.100去询问DNS服务器223.5.5.5 www.baidu.com的IP是多少时，本机和DNS服务器并不是用一根线直接相连的，而是通过网关和路由器间接相连，要把这个询问消息发送个DNS服务器，就必须要这些网关和路由器进行转发，使用ipconfig /all命令可以查看网关，如图：</p>
+<a id="more"></a>
+<img src="/blog/2015/11/26/计算机网络概述/图一.jpg" alt="图一" title="图一">  
+<p>也就是说我先把信息发给网关或者路由器，如果只能使用IP来表示目标的话，那就只能先将目标设置为网关IP：192.168.1.100，但是当网关收到了这条消息后，网关不知道该怎么办，它该把这条消息发给谁呢？这显然是行不通的，当然这里可以使用广播，向与网关相连的所有的网关或这路由器都发送这条消息，其它机器使用同样的方法一直把消息传递给DNS服务器，然后DNS服务器使用同样的方法把响应回传。这种实现有一个很恐怖的地方，就拿网关A以及和网关A相连的另一个路由B来说，当网关把消息广播出去后，路由B会收到一条消息，然后路由B又将消息广播，此时网关A又会收到这条消息，然后A和B就传这条消息传到白头到老，地老天荒。如图：</p>
+<img src="/blog/2015/11/26/计算机网络概述/图二.png" alt="图二" title="图二">  
+<p>有人说这个比较容易解决，A传给B后，B传给除A外的其他机器，这样就不会出现这种传过来传回去的无限循环。传给出了除信息来源的其他机器，也就是说每传到一个机器后，要把信息里的源IP地址改变成机器自己的IP地址，这会出现当DNS服务器收到信息后不知道把信息回给谁？接着广播吗？就算这样行的通，这样真的能解决无限循环的问题吗？现在假设A将信息传给B，B传给除A外的其他机器，比如C，C收到信息，C将信息传给除B外的其他机器，比如A，又是一个天长地久，之前是两人的缠缠绵绵到天涯，现在是三人的纠葛漩涡。除此之外，这种方法带来的将是整个网络的瘫痪，进入流言满天飞，而且是永无停歇的境况。如图：</p>
+<img src="/blog/2015/11/26/计算机网络概述/图三.png" alt="图三" title="图三">  
+<p>这么看来这种方法是行不通的，那用什么办法可以解决呢？<br>既然是因为目标IP和源IP在传递的过程中一直在变化，那可以再添加一个地址，套一层壳，每次只换壳，目标IP永远不变，有句歌词怎么唱来着：“洋装虽然穿在身 我心依然是中国心”。正所谓初心不改，奋勇向前，总有一天会达成目标的。看一看具体的流程，本机将DNS消息和目标IP和自己IP以及网关的一个地址（目标地址）和自己的一个地址（源地址）,根据网关的这个地址，把信息发个网关，网关收到消息，根据目标IP选择一个目标路由器或主机，将消息中的目标地址改成路由或者主机的地址，将源地址改为网关自己的地址，根据目标地址，将消息发给路由或主机，以此类推一直到目标IP主机收到这个消息。消息回复，使用同样的方法。这样就完成了两台电脑之间的通信。</p>
+<p>用什么地址可以唯一标识一台计算机呢？答案是MAC地址，每台计算机在生产的时候都会为其分配一个唯一的一个MAC地址。计算机之间的通信原理大致就是这样，具体细节，会在后面的文章中介绍。接下来，我们来大致理一理这个过程的稍微具体点的实现。</p>
+<p>我们分别看看各个计算机的职责：</p>
+<ol>
+<li>发起通信的主机，主要职责：<ul>
+<li>准备好要发送的用户信息；</li>
+<li>找到目标主机IP地址和本机的IP地址；</li>
+<li>将目标主机的的IP地址添加为信息的目标IP，将自己的IP地址添加为源IP，将其作为一整体，当作一条新的信息；</li>
+<li>找到网关的MAC地址和本机的MAC地址；</li>
+<li>在新的信息上添加网关MAC地址作为目标MAC地址，添加本机MAC地址作为源MAC地址；</li>
+<li>根据目标MAC地址，将消息发送出去。</li>
+</ul>
+</li>
+<li>网关或者路由，主要职责：<ul>
+<li>将收到的信息进行解析，取出目标MAC地址，对比看看是不是自己的MAC地址；</li>
+<li>如果是，则取出目标IP地址，看看离这个IP最近且与自己直接相连的路由或者主机，找出它的MAC地址，并且和它相连的网络接口，将目标MAC地址修改为最近的路由或者主机的MAC地址，将源MAC地址修改为网关或者路由自己的MAC地址，将消息从找到的网络接口发送出去。</li>
+<li>如果不是，将消息丢弃。</li>
+</ul>
+</li>
+<li>接收端的主机，主要职责：<ul>
+<li>将收到的信息进行解析，取出目标MAC地址，对比看看是不是自己的MAC地址；</li>
+<li>如果是本机MAC地址，取出目标IP，检查是不是本机IP；</li>
+<li>如果不是本机MAC地址，丢弃此信息，不作后面的解析；</li>
+<li>如果是本机IP地址，则取出信息，进行相应处理；</li>
+<li>如果不是本机IP地址，则丢弃此消息；</li>
+</ul>
+</li>
+</ol>
+<p>从上面的职责，我们可以看出它们的主要职责有，用户信息处理，IP地址处理和MAC地址处理。源主机和目标主机这三个职责都有，只不过是过程向逆，三者都有的职责是IP地址处理和MAC地址处理。所以我们可以将这三个职责抽象出三个独立的处理模块，分别处理各自职责内的事情。将这三个模块组合起来就可以处理整个通信过程。而且从上面的过程可以明显的看出，这些处理过程有着层级关系，为了降低复杂性，我们对网络进行分层，将用户数据处理模块对应为应用层，IP地址处理模块对应为IP层，MAC地址处理模块对应为数据链路层。这就是计算机网络中的分层思想。</p>
+<p>小伙伴们看到这，是不是要着急了。计算机网络的书本上明明白白说了OSI参考模型是七层，TCP/IP参考模型是四层，这里只有三层，明显是博主学艺不精。至于OSI参考模型这里就不说了，这个只是参考模型，在实现中并没有采用。TCP/IP参考模型的四层，再加上一层物理层（就是各类物理硬件），我们说的就是这个模型，下面将另外两层补上。</p>
+<p>前面只是说到两台主机间的通信，我们忽略了物理设备这层（即各类硬件），把这层加上就足够两台主机通信了（当然这里可靠性之类的细节），也就是说，如果每台计算机只有一个使用网络的程序，那么理论上有这四层就能进行网络通信了，但是我们都知道，每台电脑上都有很多程序在使用网络，这就带了一个问题，计算机收到了来之网络上的信息，这条信息是要交给哪个应用程序的呢？我们可已使用上面的原理再加一层处理，网络分层也加一层，这一层处理的职责是在信息中添加一个ID标记（也就是端口）来标记这条消息是给哪个应用程序的，在接收端，根据这个ID（即端口）将信息交给对应的应用程序。加上这两层，就可以真真正正的实现通信了。</p>
+<hr>
+<h3 id="分层">分层</h3><p>下面来看看分层：网络协议通常分不同层次进行开发，每一层分别<br>负责不同的通信功能。这里不介绍物理层，这一层并非协议分层。</p>
+<ol>
+<li>链路层：通常包括操作系统中的设备驱动程序及接口卡。</li>
+<li>网络层：处理分组在网络中的活动，包括协议有：IP、ICMP和IGMP。</li>
+<li>运输层：或者叫做传输层，主要是为两台主机的应用程序提供端到端的通信，包括协议有：TCP和UDP。</li>
+<li>应用层：负责处理特定应用程序的细节，包括协议有：Telnet、FTP、HTTP和e-mail等。</li>
+</ol>
+<p>用一张图来表示一下TCP/IP协议族中不同层次的协议，协议详情，以后在详陈：</p>
+<img src="/blog/2015/11/26/计算机网络概述/图四.png" alt="图四" title="图四">
+<hr>
+<h3 id="封装">封装</h3><p>借助图四中的协议之间的箭头，我们来看看数据的组装（即箭头方向是从上向下的过程）和解析（即箭头方向是从下向上的过程）过程，这里的组装就是现在要将的封装，下一小节要说的分用就是解析过程。</p>
+<p>封装过程如下：</p>
+<ol>
+<li>用户输入数据给应用程序，比如使用FTP的PWD命令显示当前目录，此时的数据就是：PWD。</li>
+<li>FTP应用程序将此命令按FTP协议的规定将用户数据封装成FTP数据：PWD\r\r。</li>
+<li>FTP将FTP数据交给TCP层，TCP层按照TCP协议加上TCP头，形成新的数据：TCP头+FTP数据。</li>
+<li>TCP层将数据传给IP层，IP层按照IP协议加上IP头，形成新的数据：IP头+TCP头+FTP数据。</li>
+<li>IP层将数据交给链路层，链路层按照链路层上的协议（一般是以太网协议）加上链路层协议头和链路层尾部，形成新的数据：以太网协议头+IP头+TCP头+FTP数据+以太网尾部。</li>
+</ol>
+<p>如下图所示：</p>
+<img src="/blog/2015/11/26/计算机网络概述/图五.png" alt="图五" title="图五">
+<hr>
+<h3 id="分用">分用</h3><p>分用正好是封装的逆过程，此过程就不赘述了，这里说一个题外话，由以太网尾部联想到身份证最后一位的含义，它们的作用是一样的，都是一个校验作用。现在就让我们来看看身份证末尾出现X是怎么一回事：</p>
+<p>公民身份号码是特征组合码，由十七位数字本体码和一位数字校验码组成。排列顺序从左至右依次为：六位数字地址码，八位数字出生日期码，三位数字顺序码和一位数字校验码。</p>
+<p>前面的17位是可以根据地区、出生年月和顺序码确定下来，最有一位的计算方法如下：</p>
+<ol>
+<li>将前面的身份证号码17位数分别乘以不同的系数。从第一位到第十七位的系数分别为：7－9－10－5－8－4－2－1－6－3－7－9－10－5－8－4－2。</li>
+<li>将这17位数字和系数相乘的结果相加。</li>
+<li>用加出来和除以11，看余数是多少？</li>
+<li>余数只可能有0－1－2－3－4－5－6－7－8－9－10这11个数字。其分别对应的最后一位身份证的号码为1－0－X －9－8－7－6－5－4－3－2。</li>
+</ol>
+<p>从上面可以看出由于是对11取余数，所以有11个余数，而一位数只有10个，所以就出现了X。现在你可以用自己的身份证验证一下是不是这样的,如果你计算出来的结果与你身份证最后一位不一样，你的身份证就有问题了。还有一点：倒数第二数字，如果是奇数，则说明这个身份证号码是男性的，偶数则是女性的。</p>
+<hr>
+<p>参考资料：</p>
+<ol>
+<li>《TCP/IP详解：卷一》</li>
+<li><a href="http://baike.baidu.com/view/188003.htm" target="_blank" rel="external">居民身份证号码</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32" style="float:right;">
+			<a class="jiathis_button_qzone"></a>
+			<a class="jiathis_button_tsina"></a>
+			<a class="jiathis_button_tqq"></a>
+			<a class="jiathis_button_weixin"></a>
+			<a class="jiathis_button_renren"></a>
+			<a href="http://www.jiathis.com/share?uid=2071579" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2071579" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      <!--<a data-url="http://hanhaichensha.coding.me/2015/11/26/计算机网络概述/" data-id="ciy8iux32000bnkvuu6vp3d3r" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/计算机网络/">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2016/03/06/单击微信文章进入原文的方法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          单击微信文章进入原文的方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2015/11/01/也说“当你输入一个网址，实际会发生什么-”/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">也说“当你输入一个网址，实际会发生什么?”</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<section id="comment">
+  <h1 class="title">comment</h1>
+  <div id="disqus_thread">
+  <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2071579"></script>
+  <!-- UY END -->
+  </div>
+</section>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Linux防火墙/">Linux防火墙</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Ruby/">Ruby</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/信息编码/">信息编码</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/微信开发/">微信开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/杂谈/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/笔试/">笔试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/算法/">算法</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/计算机基础/">计算机基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/计算机网络/">计算机网络</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/C-11/">C++11</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Netfilter/">Netfilter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RSA算法/">RSA算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Ruby/">Ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/iptables/">iptables</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/中国剩余定理/">中国剩余定理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/信息编码/">信息编码</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/关于博客/">关于博客</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/字符串/">字符串</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/并发编程/">并发编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/微信开发/">微信开发</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/总结/">总结</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/扩展辗转相除法/">扩展辗转相除法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/教程/">教程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/数学/">数学</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/杂谈/">杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/欧拉函数/">欧拉函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔试/">笔试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/笔试题/">笔试题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/网络/">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/计算机基础/">计算机基础</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/计算机网络/">计算机网络</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/费马小定理/">费马小定理</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/辗转相除法/">辗转相除法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/防火墙/">防火墙</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/C-11/" style="font-size: 17.5px;">C++11</a> <a href="/blog/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/blog/tags/Netfilter/" style="font-size: 10px;">Netfilter</a> <a href="/blog/tags/RSA算法/" style="font-size: 17.5px;">RSA算法</a> <a href="/blog/tags/Ruby/" style="font-size: 15px;">Ruby</a> <a href="/blog/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/blog/tags/中国剩余定理/" style="font-size: 10px;">中国剩余定理</a> <a href="/blog/tags/信息编码/" style="font-size: 12.5px;">信息编码</a> <a href="/blog/tags/关于博客/" style="font-size: 10px;">关于博客</a> <a href="/blog/tags/字符串/" style="font-size: 12.5px;">字符串</a> <a href="/blog/tags/并发编程/" style="font-size: 10px;">并发编程</a> <a href="/blog/tags/微信开发/" style="font-size: 10px;">微信开发</a> <a href="/blog/tags/总结/" style="font-size: 10px;">总结</a> <a href="/blog/tags/扩展辗转相除法/" style="font-size: 10px;">扩展辗转相除法</a> <a href="/blog/tags/教程/" style="font-size: 10px;">教程</a> <a href="/blog/tags/数学/" style="font-size: 20px;">数学</a> <a href="/blog/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/blog/tags/欧拉函数/" style="font-size: 10px;">欧拉函数</a> <a href="/blog/tags/笔试/" style="font-size: 10px;">笔试</a> <a href="/blog/tags/笔试题/" style="font-size: 12.5px;">笔试题</a> <a href="/blog/tags/网络/" style="font-size: 10px;">网络</a> <a href="/blog/tags/计算机基础/" style="font-size: 12.5px;">计算机基础</a> <a href="/blog/tags/计算机网络/" style="font-size: 12.5px;">计算机网络</a> <a href="/blog/tags/费马小定理/" style="font-size: 12.5px;">费马小定理</a> <a href="/blog/tags/辗转相除法/" style="font-size: 10px;">辗转相除法</a> <a href="/blog/tags/防火墙/" style="font-size: 10px;">防火墙</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/08/">八月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/06/">六月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2016/08/09/C-11特性与应用（三）/">C++11特性与应用（三）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/08/04/C-11特性与应用（二）/">C++11特性与应用（二）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/08/01/C-11特性与应用（一）：C-11语言特性/">C++11特性与应用（一）：C++11语言特性</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/07/22/C-11并发编程（一）：你好，并发世界/">C++11并发编程（一）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/06/06/别样的进制/">别样的进制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 翰海尘沙<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">主页</a>
+  
+    <a href="/blog/archives/" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<script src="/blog/js/jquery2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/blog/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
